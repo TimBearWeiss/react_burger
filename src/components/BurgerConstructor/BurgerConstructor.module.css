@@ -2,6 +2,13 @@
   max-width: 600px;
   margin-left: 56px;
 }
+
+.alignment {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .scroll {
   height: 464px;
   overflow-y: scroll;
@@ -26,6 +33,7 @@
   margin-bottom: 16px;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .relative:last-child {
