@@ -7,25 +7,24 @@ import BurgerConstructor from "../BurgerConstructor/BurgerConstructor.jsx";
 function App() {
   const ApiIngredients = "https://norma.nomoreparties.space/api/ingredients";
 
-  const [data, setData] = useState([]);
+  const [ingredients, setState] = useState([]);
 
   useEffect(() => {
-    const getInfo = () => {
+    const getIngredients = () => {
       return fetch(ApiIngredients)
         .then((res) => res.json())
-        .then((data) => setData(data.data));
+        .then((data) => setState(data.data))
+        .catch((err) => alert(err));
     };
-    getInfo();
-  }, [setData]);
-
-  // console.log(data)
+    getIngredients();
+  }, [setState]);
 
   return (
     <div>
       <AppHeader />
       <main className={appStyle.main}>
-        <BurgerIngredients data={data} />
-        <BurgerConstructor data={data} />
+        <BurgerIngredients data={ingredients} />
+        <BurgerConstructor data={ingredients} />
       </main>
     </div>
   );
