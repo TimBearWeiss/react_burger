@@ -6,12 +6,11 @@ import {
   DragIcon,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { data } from "../../utils/data";
+// import { data } from "../../utils/data";
 
-const BurgerConstructor = () => {
+const BurgerConstructor = ({ data }) => {
+  // старое
   // const bun = data.find((item) => item.type === "bun");
-
-  // буяним
   function creatBun(data) {
     const bun = data.find((item) => item.type === "bun");
     return bun;
@@ -19,24 +18,25 @@ const BurgerConstructor = () => {
 
   const bun = React.useMemo(() => creatBun(data), [data]);
 
-  // буяним
-
   const mid = data.filter(
     (item) => item.type === "main" || item.type === "sauce"
   );
+
+  // старое
 
   return (
     <section className={ConstructorStyle.section}>
       <div className={ConstructorStyle.alignment}>
         <div className={ConstructorStyle.base}>
-          <ConstructorElement
-            key={bun._id}
-            type="top"
-            isLocked={true}
-            text={bun.name}
-            price={bun.price}
-            thumbnail={bun.image}
-          />
+          {bun && (
+            <ConstructorElement
+              key={bun._id}
+              type="top"
+              text={bun.name}
+              price={bun.price}
+              thumbnail={bun.image}
+            />
+          )}
         </div>
 
         <div className={ConstructorStyle.scroll}>
@@ -52,13 +52,15 @@ const BurgerConstructor = () => {
           ))}
         </div>
         <div className={ConstructorStyle.base}>
-          <ConstructorElement
-            key={bun._id}
-            type="bottom"
-            text={bun.name}
-            price={bun.price}
-            thumbnail={bun.image}
-          />
+          {bun && (
+            <ConstructorElement
+              key={bun._id}
+              type="bottom"
+              text={bun.name}
+              price={bun.price}
+              thumbnail={bun.image}
+            />
+          )}
         </div>
 
         <div className={ConstructorStyle.down}>

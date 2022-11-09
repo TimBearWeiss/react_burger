@@ -1,10 +1,10 @@
 import React from "react";
 import IngredientStyle from "./BurgerIngredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { data } from "../../../src/utils/data";
+// import { data } from "../../../src/utils/data";
 import Ingredient from "../Ingredient/Ingredient";
 
-const BurgerIngredients = () => {
+const BurgerIngredients = ({ data }) => {
   const [current, setCurrent] = React.useState("one");
 
   const buns = data.filter((data) => data.type === "bun");
