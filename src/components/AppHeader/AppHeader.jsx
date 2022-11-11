@@ -1,4 +1,3 @@
-import React from "react";
 import headerStyles from "./AppHeader.module.css";
 import {
   Logo,
@@ -16,7 +15,7 @@ const AppHeader = () => {
       <nav className={headerStyles.menu}>
         <ul className={headerStyles.navigation}>
           <li className={headerStyles.list}>
-            <a className={headerStyles.link} href="#">
+            <a className={headerStyles.link} href={"#"}>
               <BurgerIcon type="secondary" />
               <p className="text text_type_main-default text_color_inactive m-1">
                 Конструктор
@@ -24,7 +23,7 @@ const AppHeader = () => {
             </a>
           </li>
           <li className={headerStyles.list}>
-            <a className={headerStyles.link} href="#">
+            <a className={headerStyles.link} href={"#"}>
               <ListIcon type="secondary" />
               <p className="text text_type_main-default text_color_inactive m-1">
                 Лента заказов
@@ -34,7 +33,7 @@ const AppHeader = () => {
         </ul>
         <ul className={headerStyles.profile}>
           <li className={headerStyles.list}>
-            <a className={headerStyles.link} href="#">
+            <a className={headerStyles.link} href={"#"}>
               <ProfileIcon type="secondary" />
               <p className="text text_type_main-default text_color_inactive m-1">
                 Личный кабинет

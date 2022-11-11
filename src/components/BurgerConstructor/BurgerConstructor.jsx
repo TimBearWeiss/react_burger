@@ -6,9 +6,10 @@ import {
   DragIcon,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-// import { data } from "../../utils/data";
+import PropTypes from "prop-types";
+import ingredietnPropTypes from "../../utils/data.js";
 
-const BurgerConstructor = ({ data }) => {
+const BurgerConstructor = ({ data, open }) => {
   // старое
   // const bun = data.find((item) => item.type === "bun");
   function creatBun(data) {
@@ -21,8 +22,6 @@ const BurgerConstructor = ({ data }) => {
   const mid = data.filter(
     (item) => item.type === "main" || item.type === "sauce"
   );
-
-  // старое
 
   return (
     <section className={ConstructorStyle.section}>
@@ -68,13 +67,18 @@ const BurgerConstructor = ({ data }) => {
             <p className="text text_type_digits-medium mr-2">610</p>
             <CurrencyIcon type="primary" />
           </div>
-          <Button type="primary" size="large">
+          <Button onClick={open} type="primary" size="large">
             Оформить заказ
           </Button>
         </div>
       </div>
     </section>
   );
+};
+
+BurgerConstructor.propTypes = {
+  data: PropTypes.array,
+  open: PropTypes.func,
 };
 
 export default BurgerConstructor;
