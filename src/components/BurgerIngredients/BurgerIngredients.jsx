@@ -7,9 +7,6 @@ import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetail/IngredientDetail.jsx";
 
 const BurgerIngredients = ({ data }) => {
-  //функция таба
-  const [current, setCurrent] = React.useState("one");
-
   // модальное окно
 
   const [currentIngredient, setCurrentIngredient] = React.useState("");
@@ -29,6 +26,16 @@ const BurgerIngredients = ({ data }) => {
   const sauces = data.filter((data) => data.type === "sauce");
   const fillings = data.filter((data) => data.type === "main");
 
+  //функция таба
+  const [current, setCurrent] = React.useState("one");
+
+  const handleTabClick = (value) => {
+    setCurrent(value);
+    document
+      .querySelector(`#${value}`)
+      .scrollIntoView({ block: "start", behavior: "smooth" });
+  };
+
   return (
     <section className={IngredientStyle.section}>
       {currentIngredient && (
@@ -38,18 +45,24 @@ const BurgerIngredients = ({ data }) => {
       )}
       <h1 className="text text_type_main-large mb-3">Соберите бургер</h1>
       <div style={{ display: "flex" }}>
-        <Tab value="one" active={current === "one"} onClick={setCurrent}>
+        <Tab value="one" active={current === "one"} onClick={handleTabClick}>
           Булки
         </Tab>
-        <Tab value="two" active={current === "two"} onClick={setCurrent}>
+        <Tab value="two" active={current === "two"} onClick={handleTabClick}>
           Соусы
         </Tab>
-        <Tab value="three" active={current === "three"} onClick={setCurrent}>
+        <Tab
+          value="three"
+          active={current === "three"}
+          onClick={handleTabClick}
+        >
           Начинки
         </Tab>
       </div>
       <div className={IngredientStyle.scroll}>
-        <h2 className="text text_type_main-medium mt-10 mb-1">Булки</h2>
+        <h2 id="one" className="text text_type_main-medium mt-10 mb-1">
+          Булки
+        </h2>
         <div className={IngredientStyle.box}>
           {buns.map((item) => (
             <Ingredient
@@ -62,7 +75,9 @@ const BurgerIngredients = ({ data }) => {
             />
           ))}
         </div>
-        <h2 className="text text_type_main-medium mt-10 mb-1">Соусы</h2>
+        <h2 id="two" className="text text_type_main-medium mt-10 mb-1">
+          Соусы
+        </h2>
         <div className={IngredientStyle.box}>
           {sauces.map((item) => (
             <Ingredient
@@ -75,7 +90,9 @@ const BurgerIngredients = ({ data }) => {
             />
           ))}
         </div>
-        <h2 className="text text_type_main-medium mt-10 mb-1">Начинки</h2>
+        <h2 id="three" className="text text_type_main-medium mt-10 mb-1">
+          Начинки
+        </h2>
         <div className={IngredientStyle.box}>
           {fillings.map((item) => (
             <Ingredient
