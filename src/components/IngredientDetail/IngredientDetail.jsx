@@ -1,9 +1,16 @@
+import React from "react";
 import style from "./IngredientDetail.module.css";
 import PropTypes from "prop-types";
 import ingredietnPropTypes from "../../utils/data.js";
 
 const IngredientDetails = ({ data, currentIngredient }) => {
-  const ingredient = data.filter((item) => item._id === currentIngredient);
+  // const ingredient = data.filter((item) => item._id === currentIngredient);
+
+  function creatIngredient(data) {
+    const ingredient = data.filter((item) => item._id === currentIngredient);
+    return ingredient;
+  }
+  const ingredient = React.useMemo(() => creatIngredient(data), [data]);
 
   return (
     <>

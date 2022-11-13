@@ -4,7 +4,6 @@ import AppHeader from "../AppHeader/AppHeader.jsx";
 import BurgerIngredients from "../BurgerIngredients/BurgerIngredients.jsx";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor.jsx";
 import Modal from "../Modal/Modal";
-import OrderDetails from "../OrderDetails/OrderDetails.jsx";
 import IngredientDetails from "../IngredientDetail/IngredientDetail.jsx";
 import { getIngredients } from "../../utils/api.js";
 
@@ -20,15 +19,6 @@ function App() {
     setCurrentIngredient("");
   };
 
-  const [CurrentOrder, setCurrentOrder] = useState(false);
-
-  const openOrderModal = () => {
-    setCurrentOrder(true);
-  };
-  const closeOrderModal = () => {
-    setCurrentOrder(false);
-  };
-
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
@@ -41,7 +31,7 @@ function App() {
         <AppHeader />
         <main className={appStyle.main}>
           <BurgerIngredients open={openIngredientModal} data={ingredients} />
-          <BurgerConstructor open={openOrderModal} data={ingredients} />
+          <BurgerConstructor data={ingredients} />
         </main>
       </div>
       {currentIngredient && (
@@ -50,11 +40,6 @@ function App() {
             data={ingredients}
             currentIngredient={currentIngredient}
           />
-        </Modal>
-      )}
-      {CurrentOrder && (
-        <Modal close={closeOrderModal}>
-          <OrderDetails />
         </Modal>
       )}
     </>
