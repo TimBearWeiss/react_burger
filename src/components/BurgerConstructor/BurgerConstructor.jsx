@@ -7,11 +7,8 @@ import {
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
-import ingredietnPropTypes from "../../utils/data.js";
 
 const BurgerConstructor = ({ data, open }) => {
-  // старое
-  // const bun = data.find((item) => item.type === "bun");
   function creatBun(data) {
     const bun = data.find((item) => item.type === "bun");
     return bun;

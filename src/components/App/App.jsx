@@ -6,6 +6,7 @@ import BurgerConstructor from "../BurgerConstructor/BurgerConstructor.jsx";
 import Modal from "../Modal/Modal";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
 import IngredientDetails from "../IngredientDetail/IngredientDetail.jsx";
+import { getIngredients } from "../../utils/api.js";
 
 function App() {
   const ApiIngredients = "https://norma.nomoreparties.space/api/ingredients";
@@ -28,17 +29,11 @@ function App() {
     setCurrentOrder(false);
   };
 
-  const [ingredients, setState] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
-    const getIngredients = () => {
-      return fetch(ApiIngredients)
-        .then((res) => res.json())
-        .then((data) => setState(data.data))
-        .catch((err) => alert(err));
-    };
-    getIngredients();
-  }, [setState]);
+    getIngredients(ApiIngredients).then((data) => setIngredients(data.data));
+  }, [setIngredients]);
 
   return (
     <>
