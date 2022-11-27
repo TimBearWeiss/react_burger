@@ -3,7 +3,7 @@ import appStyle from "./App.module.css";
 import AppHeader from "../AppHeader/AppHeader.jsx";
 import BurgerIngredients from "../BurgerIngredients/BurgerIngredients.jsx";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor.jsx";
-
+import { IngredientsContest } from "../services/ingredientsContext.js";
 import { getIngredients } from "../../utils/api.js";
 
 function App() {
@@ -21,8 +21,10 @@ function App() {
       <div>
         <AppHeader />
         <main className={appStyle.main}>
-          <BurgerIngredients data={ingredients} />
-          <BurgerConstructor data={ingredients} />
+          <IngredientsContest.Provider value={{ ingredients, setIngredients }}>
+            <BurgerIngredients data={ingredients} />
+            <BurgerConstructor />
+          </IngredientsContest.Provider>
         </main>
       </div>
     </>

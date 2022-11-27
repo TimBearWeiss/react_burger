@@ -9,8 +9,12 @@ import {
 import PropTypes from "prop-types";
 import Modal from "../Modal/Modal";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
+import { IngredientsContest } from "../services/ingredientsContext.js";
+import { getNumberOfOrder } from "../../utils/api.js";
 
-const BurgerConstructor = ({ data }) => {
+const BurgerConstructor = () => {
+  const { ingredients, setIngredients } = React.useContext(IngredientsContest);
+
   // функционал модального окна
   const [CurrentOrder, setCurrentOrder] = React.useState(false);
 
@@ -21,20 +25,45 @@ const BurgerConstructor = ({ data }) => {
     setCurrentOrder(false);
   };
   // находим ингредиенты
-  function creatBun(data) {
-    const bun = data.find((item) => item.type === "bun");
+  function creatBun(ingredients) {
+    const bun = ingredients.find((item) => item.type === "bun");
     return bun;
   }
-  const bun = React.useMemo(() => creatBun(data), [data]);
-  const mid = data.filter(
+  const bun = React.useMemo(() => creatBun(ingredients), [ingredients]);
+  const mid = ingredients.filter(
     (item) => item.type === "main" || item.type === "sauce"
   );
+
+  // динамическая цена выбранных ингредиентов
+
+  const totalPrice = ingredients.reduce((acc, item) => {
+    return acc + item.price;
+  }, 0);
+
+  // отправка заказа на сервер
+  const IdIngredients = [];
+  ingredients.forEach((item) => {
+    IdIngredients.push(item._id);
+  });
+
+  const apiOrders = "https://norma.nomoreparties.space/api/orders";
+  const [numberOfOrder, setOrder] = React.useState(0);
+
+  const startOrder = () => {
+    getNumberOfOrder(apiOrders, IdIngredients)
+      .then((res) => {
+        setOrder(res.order.number);
+      })
+      .then(() => {
+        openOrderModal();
+      });
+  };
 
   return (
     <section className={ConstructorStyle.section}>
       {CurrentOrder && (
         <Modal close={closeOrderModal}>
-          <OrderDetails />
+          <OrderDetails numberOfOrder={numberOfOrder} />
         </Modal>
       )}
       <div className={ConstructorStyle.alignment}>
@@ -76,21 +105,16 @@ const BurgerConstructor = ({ data }) => {
 
         <div className={ConstructorStyle.down}>
           <div className={ConstructorStyle.price}>
-            <p className="text text_type_digits-medium mr-2">610</p>
+            <p className="text text_type_digits-medium mr-2">{totalPrice}</p>
             <CurrencyIcon type="primary" />
           </div>
-          <Button onClick={openOrderModal} type="primary" size="large">
+          <Button onClick={startOrder} type="primary" size="large">
             Оформить заказ
           </Button>
         </div>
       </div>
     </section>
   );
-};
-
-BurgerConstructor.propTypes = {
-  data: PropTypes.array,
-  open: PropTypes.func,
 };
 
 export default BurgerConstructor;

@@ -21,7 +21,6 @@ const BurgerIngredients = ({ data }) => {
   // находим игредиенты
 
   const ingredient = data.filter((item) => item._id === currentIngredient);
-  // почему-то при использовании find все ломается, filter же работает
   const buns = data.filter((data) => data.type === "bun");
   const sauces = data.filter((data) => data.type === "sauce");
   const fillings = data.filter((data) => data.type === "main");
