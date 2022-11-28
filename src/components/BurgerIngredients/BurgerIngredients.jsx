@@ -1,12 +1,14 @@
 import React from "react";
 import IngredientStyle from "./BurgerIngredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import Ingredient from "../Ingredient/Ingredient";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetail/IngredientDetail.jsx";
+import { IngredientsContest } from "../../services/ingredientsContext.js";
 
-const BurgerIngredients = ({ data }) => {
+const BurgerIngredients = () => {
+  const { ingredients, setIngredients } = React.useContext(IngredientsContest);
+
   // модальное окно
 
   const [currentIngredient, setCurrentIngredient] = React.useState("");
@@ -20,10 +22,12 @@ const BurgerIngredients = ({ data }) => {
 
   // находим игредиенты
 
-  const ingredient = data.filter((item) => item._id === currentIngredient);
-  const buns = data.filter((data) => data.type === "bun");
-  const sauces = data.filter((data) => data.type === "sauce");
-  const fillings = data.filter((data) => data.type === "main");
+  const ingredient = ingredients.filter(
+    (item) => item._id === currentIngredient
+  );
+  const buns = ingredients.filter((data) => data.type === "bun");
+  const sauces = ingredients.filter((data) => data.type === "sauce");
+  const fillings = ingredients.filter((data) => data.type === "main");
 
   //функция таба
   const [current, setCurrent] = React.useState("one");
@@ -107,11 +111,6 @@ const BurgerIngredients = ({ data }) => {
       </div>
     </section>
   );
-};
-
-BurgerIngredients.propTypes = {
-  data: PropTypes.array,
-  open: PropTypes.func,
 };
 
 export default BurgerIngredients;

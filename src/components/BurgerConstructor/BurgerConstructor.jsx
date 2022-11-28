@@ -6,17 +6,16 @@ import {
   DragIcon,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import Modal from "../Modal/Modal";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
-import { IngredientsContest } from "../services/ingredientsContext.js";
+import { IngredientsContest } from "../../services/ingredientsContext.js";
 import { getNumberOfOrder } from "../../utils/api.js";
 
 const BurgerConstructor = () => {
   const { ingredients, setIngredients } = React.useContext(IngredientsContest);
 
   // функционал модального окна
-  const [CurrentOrder, setCurrentOrder] = React.useState(false);
+  const [currentOrder, setCurrentOrder] = React.useState(false);
 
   const openOrderModal = () => {
     setCurrentOrder(true);
@@ -46,22 +45,22 @@ const BurgerConstructor = () => {
     IdIngredients.push(item._id);
   });
 
-  const apiOrders = "https://norma.nomoreparties.space/api/orders";
   const [numberOfOrder, setOrder] = React.useState(0);
 
   const startOrder = () => {
-    getNumberOfOrder(apiOrders, IdIngredients)
+    getNumberOfOrder("orders", IdIngredients)
       .then((res) => {
         setOrder(res.order.number);
       })
       .then(() => {
         openOrderModal();
-      });
+      })
+      .catch((err) => alert(`Ошибка: ${err.status}`));
   };
 
   return (
     <section className={ConstructorStyle.section}>
-      {CurrentOrder && (
+      {currentOrder && (
         <Modal close={closeOrderModal}>
           <OrderDetails numberOfOrder={numberOfOrder} />
         </Modal>
@@ -72,7 +71,7 @@ const BurgerConstructor = () => {
             <ConstructorElement
               key={bun._id}
               type="top"
-              text={bun.name}
+              text={`${bun.name} (верх)`}
               price={bun.price}
               thumbnail={bun.image}
             />
@@ -96,7 +95,7 @@ const BurgerConstructor = () => {
             <ConstructorElement
               key={bun._id}
               type="bottom"
-              text={bun.name}
+              text={`${bun.name} (низ)`}
               price={bun.price}
               thumbnail={bun.image}
             />
@@ -108,7 +107,12 @@ const BurgerConstructor = () => {
             <p className="text text_type_digits-medium mr-2">{totalPrice}</p>
             <CurrencyIcon type="primary" />
           </div>
-          <Button onClick={startOrder} type="primary" size="large">
+          <Button
+            htmlType={"button"}
+            onClick={startOrder}
+            type="primary"
+            size="large"
+          >
             Оформить заказ
           </Button>
         </div>

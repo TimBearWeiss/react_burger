@@ -1,17 +1,18 @@
-const getIngredients = (url) => {
-  return fetch(url)
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+const BASE_URL = "https://norma.nomoreparties.space/api";
 
-    .catch((err) => alert(`Ошибка: ${err.status}`));
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка: ${res.status}`);
+}
+
+const getIngredients = (url) => {
+  return fetch(`${BASE_URL}/${url}`).then(checkResponse);
 };
 
 const getNumberOfOrder = (url, idIngredients) => {
-  return fetch(url, {
+  return fetch(`${BASE_URL}/${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -19,14 +20,7 @@ const getNumberOfOrder = (url, idIngredients) => {
     body: JSON.stringify({
       ingredients: idIngredients,
     }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch((err) => alert(`Ошибка: ${err.status}`));
+  }).then(checkResponse);
 };
 
 export { getIngredients, getNumberOfOrder };

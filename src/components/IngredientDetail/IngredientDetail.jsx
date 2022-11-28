@@ -52,7 +52,7 @@ const IngredientDetails = ({ ingredient }) => {
 };
 
 IngredientDetails.propTypes = {
-  data: PropTypes.arrayOf(ingredietnPropTypes),
+  ingredient: PropTypes.arrayOf(ingredietnPropTypes),
 };
 
 export default IngredientDetails;
