@@ -1,0 +1,28 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.picture {
+  display: block;
+  min-width: 100%;
+}
+
+.structure {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 27px;
+  margin-bottom: 20px;
+  justify-content: space-around;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
+}
