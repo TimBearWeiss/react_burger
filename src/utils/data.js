@@ -12,4 +12,4 @@ const ingredietnPropTypes = PropTypes.shape({
   image: PropTypes.string,
 });
 
-export default { ingredietnPropTypes };
+export default ingredietnPropTypes;

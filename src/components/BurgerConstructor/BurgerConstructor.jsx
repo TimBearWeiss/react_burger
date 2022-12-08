@@ -8,59 +8,55 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../Modal/Modal";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
-import { IngredientsContest } from "../../services/ingredientsContext.js";
-import { getNumberOfOrder } from "../../utils/api.js";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getOrder } from "../../services/actions/actions";
+import { useCallback } from "react";
+import { CLOSE_ORDER_MODAL } from "../../services/actions/actions";
 
 const BurgerConstructor = () => {
-  const { ingredients, setIngredients } = React.useContext(IngredientsContest);
+  const dispatch = useDispatch();
 
-  // функционал модального окна
-  const [currentOrder, setCurrentOrder] = React.useState(false);
+  // ингредиенты конструтора
+  const allIngredients = useSelector(
+    (store) => store.ingredients.allIngredients
+  );
 
-  const openOrderModal = () => {
-    setCurrentOrder(true);
-  };
-  const closeOrderModal = () => {
-    setCurrentOrder(false);
-  };
   // находим ингредиенты
   function creatBun(ingredients) {
     const bun = ingredients.find((item) => item.type === "bun");
     return bun;
   }
-  const bun = React.useMemo(() => creatBun(ingredients), [ingredients]);
-  const mid = ingredients.filter(
+  const bun = React.useMemo(() => creatBun(allIngredients), [allIngredients]);
+  const mid = allIngredients.filter(
     (item) => item.type === "main" || item.type === "sauce"
   );
 
   // динамическая цена выбранных ингредиентов
 
-  const totalPrice = ingredients.reduce((acc, item) => {
+  const totalPrice = allIngredients.reduce((acc, item) => {
     return acc + item.price;
   }, 0);
 
   // отправка заказа на сервер
   const IdIngredients = [];
-  ingredients.forEach((item) => {
+  allIngredients.forEach((item) => {
     IdIngredients.push(item._id);
   });
 
-  const [numberOfOrder, setOrder] = React.useState(0);
+  function openOrderModal() {
+    dispatch(getOrder("orders", IdIngredients));
+  }
 
-  const startOrder = () => {
-    getNumberOfOrder("orders", IdIngredients)
-      .then((res) => {
-        setOrder(res.order.number);
-      })
-      .then(() => {
-        openOrderModal();
-      })
-      .catch((err) => alert(`Ошибка: ${err.status}`));
-  };
+  const closeOrderModal = useCallback(() => {
+    dispatch({ type: CLOSE_ORDER_MODAL });
+  }, [dispatch]);
+
+  const numberOfOrder = useSelector((store) => store.ingredients.orderNumber);
 
   return (
     <section className={ConstructorStyle.section}>
-      {currentOrder && (
+      {numberOfOrder && (
         <Modal close={closeOrderModal}>
           <OrderDetails numberOfOrder={numberOfOrder} />
         </Modal>
@@ -109,7 +105,7 @@ const BurgerConstructor = () => {
           </div>
           <Button
             htmlType={"button"}
-            onClick={startOrder}
+            onClick={openOrderModal}
             type="primary"
             size="large"
           >

@@ -11,6 +11,7 @@ const getIngredients = (url) => {
   return fetch(`${BASE_URL}/${url}`).then(checkResponse);
 };
 
+// получение номера заказа
 const getNumberOfOrder = (url, idIngredients) => {
   return fetch(`${BASE_URL}/${url}`, {
     method: "POST",
