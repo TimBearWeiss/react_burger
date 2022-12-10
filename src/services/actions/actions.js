@@ -11,6 +11,11 @@ export const GET_ORDER_FAILED = "GET_ORDER_FAILED";
 
 export const CLOSE_ORDER_MODAL = "CLOSE_ORDER_MODAL";
 
+export const ADD_INGREDIENT_IN_CONSTRUCTOR = "ADD_INGREDIENT_IN_CONSTRUCTOR";
+export const ADD_BUN_IN_CONSTRUCTOR = "ADD_BUN_IN_CONSTRUCTOR";
+
+export const DELETE_INGREDIENT = "DELETE_INGREDIENT";
+
 export function getAllIngredients(url) {
   return function (dispatch) {
     dispatch({ type: GET_INGREDIENTS_REQUEST });
@@ -36,3 +41,18 @@ export function getOrder(url, IdIngredients) {
     });
   };
 }
+
+export const addIngredientInConstructor = (item) => ({
+  type: ADD_INGREDIENT_IN_CONSTRUCTOR,
+  item,
+});
+
+export const addBunsInConstructor = (item) => ({
+  type: ADD_BUN_IN_CONSTRUCTOR,
+  item,
+});
+
+export const deleteIngredient = (item) => ({
+  type: DELETE_INGREDIENT,
+  item,
+});

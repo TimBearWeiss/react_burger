@@ -7,6 +7,9 @@ import {
   GET_ORDER_SUCCESS,
   GET_ORDER_FAILED,
   CLOSE_ORDER_MODAL,
+  ADD_INGREDIENT_IN_CONSTRUCTOR,
+  ADD_BUN_IN_CONSTRUCTOR,
+  DELETE_INGREDIENT,
 } from "../actions/actions";
 
 const defaultState = {
@@ -16,6 +19,7 @@ const defaultState = {
   allIngredientsFailed: false,
   // ингредиенты в конструкторе
   constructorIngredients: [],
+  constructorBuns: [],
 
   // получение номера заказа
   orderNumber: null,
@@ -64,6 +68,31 @@ export const defaultReducer = (state = defaultState, action) => {
 
     case CLOSE_ORDER_MODAL:
       return { ...state, orderNumber: null };
+
+    // конструктор
+    case ADD_INGREDIENT_IN_CONSTRUCTOR:
+      return {
+        ...state,
+        constructorIngredients: [...state.constructorIngredients, action.item],
+      };
+
+    case ADD_BUN_IN_CONSTRUCTOR:
+      return {
+        ...state,
+        constructorBuns: action.item,
+      };
+
+    // удаление из конструктора
+
+    case DELETE_INGREDIENT:
+      return {
+        ...state,
+        constructorIngredients: [
+          ...state.constructorIngredients.filter(
+            (item, index) => index !== action.item
+          ),
+        ],
+      };
 
     default:
       return state;

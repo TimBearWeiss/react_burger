@@ -5,7 +5,7 @@ import Ingredient from "../Ingredient/Ingredient";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetail/IngredientDetail.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { getAllIngredients } from "../../services/actions/actions";
 import { useCallback } from "react";
 import { GET_CURRENT_INGREDIENT } from "../../services/actions/actions";
@@ -127,14 +127,7 @@ const BurgerIngredients = () => {
         </h2>
         <div className={IngredientStyle.box}>
           {buns.map((item) => (
-            <Ingredient
-              item={item}
-              key={item._id}
-              id={item._id}
-              image={item.image}
-              price={item.price}
-              name={item.name}
-            />
+            <Ingredient item={item} key={item._id} />
           ))}
         </div>
         <h2 id="two" className="text text_type_main-medium mt-10 mb-1">
@@ -142,14 +135,7 @@ const BurgerIngredients = () => {
         </h2>
         <div className={IngredientStyle.box}>
           {sauces.map((item) => (
-            <Ingredient
-              item={item}
-              id={item._id}
-              key={item._id}
-              image={item.image}
-              price={item.price}
-              name={item.name}
-            />
+            <Ingredient item={item} key={item._id} />
           ))}
         </div>
         <h2 id="three" className="text text_type_main-medium mt-10 mb-1">
@@ -157,14 +143,7 @@ const BurgerIngredients = () => {
         </h2>
         <div className={IngredientStyle.box}>
           {fillings.map((item) => (
-            <Ingredient
-              item={item}
-              id={item._id}
-              key={item._id}
-              image={item.image}
-              price={item.price}
-              name={item.name}
-            />
+            <Ingredient item={item} key={item._id} />
           ))}
         </div>
       </div>
