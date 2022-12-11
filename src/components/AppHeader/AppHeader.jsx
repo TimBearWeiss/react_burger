@@ -16,8 +16,10 @@ const AppHeader = () => {
         <ul className={headerStyles.navigation}>
           <li className={headerStyles.list}>
             <a className={headerStyles.link} href={"#"}>
-              <BurgerIcon type="secondary" />
-              <p className="text text_type_main-default text_color_inactive m-1">
+              <BurgerIcon type="main" />
+              <p
+                className={`${headerStyles.active} text text_type_main-default  m-1`}
+              >
                 Конструктор
               </p>
             </a>

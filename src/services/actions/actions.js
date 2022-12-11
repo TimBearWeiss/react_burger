@@ -16,6 +16,8 @@ export const ADD_BUN_IN_CONSTRUCTOR = "ADD_BUN_IN_CONSTRUCTOR";
 
 export const DELETE_INGREDIENT = "DELETE_INGREDIENT";
 
+export const MOVE_CARD = "MOVE_CARD";
+
 export function getAllIngredients(url) {
   return function (dispatch) {
     dispatch({ type: GET_INGREDIENTS_REQUEST });
@@ -54,5 +56,10 @@ export const addBunsInConstructor = (item) => ({
 
 export const deleteIngredient = (item) => ({
   type: DELETE_INGREDIENT,
+  item,
+});
+
+export const moveCard = (item) => ({
+  type: MOVE_CARD,
   item,
 });

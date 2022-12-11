@@ -1,3 +1,4 @@
+import update from "immutability-helper";
 import {
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
@@ -10,6 +11,7 @@ import {
   ADD_INGREDIENT_IN_CONSTRUCTOR,
   ADD_BUN_IN_CONSTRUCTOR,
   DELETE_INGREDIENT,
+  MOVE_CARD,
 } from "../actions/actions";
 
 const defaultState = {
@@ -92,6 +94,21 @@ export const defaultReducer = (state = defaultState, action) => {
             (item, index) => index !== action.item
           ),
         ],
+      };
+
+    case MOVE_CARD:
+      return {
+        ...state,
+        constructorIngredients: update(state.constructorIngredients, {
+          $splice: [
+            [action.item.dragIndex, 1],
+            [
+              action.item.hoverIndex,
+              0,
+              state.constructorIngredients[action.item.dragIndex],
+            ],
+          ],
+        }),
       };
 
     default:

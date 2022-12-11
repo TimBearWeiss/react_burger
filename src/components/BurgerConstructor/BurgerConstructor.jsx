@@ -6,19 +6,18 @@ import ConstructorStyle from "./BurgerConstructor.module.css";
 import {
   ConstructorElement,
   Button,
-  DragIcon,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../Modal/Modal";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
 import { getOrder } from "../../services/actions/actions";
 import { addIngredientInConstructor } from "../../services/actions/actions";
-import {
-  addBunsInConstructor,
-  deleteIngredient,
-} from "../../services/actions/actions";
+import { addBunsInConstructor } from "../../services/actions/actions";
 import { CLOSE_ORDER_MODAL } from "../../services/actions/actions";
 import emptyPlace from "../../images/emptyPlace.svg";
+import { v4 as uuidv4 } from "uuid";
+
+import CardConstructor from "../../components/CardConstructor/CardConstructor";
 
 const BurgerConstructor = () => {
   const dispatch = useDispatch();
@@ -31,10 +30,6 @@ const BurgerConstructor = () => {
   const buns = useSelector((store) => store.ingredients.constructorBuns);
 
   const allIngredients = [...midIngredients, buns];
-  // логи
-  // console.log(buns);
-  // console.log(midIngredients);
-  // console.log(allIngredients);
 
   // динамическая цена выбранных ингредиентов
 
@@ -77,7 +72,7 @@ const BurgerConstructor = () => {
       if (item.type === "bun") {
         dispatch(addBunsInConstructor({ ...item }));
       } else {
-        dispatch(addIngredientInConstructor({ ...item }));
+        dispatch(addIngredientInConstructor({ ...item, id: uuidv4() }));
       }
     },
   });
@@ -94,7 +89,6 @@ const BurgerConstructor = () => {
     }
   }, [buns, midIngredients]);
 
-  // конец
   return (
     <section className={ConstructorStyle.section}>
       {numberOfOrder && (
@@ -126,17 +120,15 @@ const BurgerConstructor = () => {
 
         <div className={ConstructorStyle.scroll}>
           {midIngredients.map((item, index) => (
-            <div className={ConstructorStyle.relative} key={item._id}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                handleClose={() => dispatch(deleteIngredient(index))}
-                text={item.name}
-                price={item.price}
-                thumbnail={item.image}
-              />
-            </div>
+            <CardConstructor
+              data={item}
+              index={index}
+              key={item.id}
+              id={item.id}
+            ></CardConstructor>
           ))}
         </div>
+
         <div className={ConstructorStyle.base}>
           {buns.length === 0 ? (
             <ConstructorElement
