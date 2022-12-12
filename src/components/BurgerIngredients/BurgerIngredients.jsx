@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useMemo } from "react";
 import { getAllIngredients } from "../../services/actions/actions";
 import { useCallback } from "react";
-import { GET_CURRENT_INGREDIENT } from "../../services/actions/actions";
+import { GET_CURRENT_INGREDIENT } from "../../services/actions/ingredientDetailsModal";
 import { useInView } from "react-intersection-observer";
 
 const BurgerIngredients = () => {
@@ -25,7 +25,7 @@ const BurgerIngredients = () => {
   // модальное окно
 
   const currentIngredient = useSelector(
-    (store) => store.ingredients.currentIngredient
+    (store) => store.ingredientsDetailModal.currentIngredient
   );
 
   const closeIngredientModal = useCallback(() => {

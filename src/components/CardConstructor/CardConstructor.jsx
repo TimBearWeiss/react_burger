@@ -6,9 +6,11 @@ import {
   ConstructorElement,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { deleteIngredient } from "../../services/actions/actions";
+import {
+  deleteIngredient,
+  moveCard,
+} from "../../services/actions/burgerConstructor";
 import { useDrag } from "react-dnd";
-import { moveCard } from "../../services/actions/actions";
 
 const CardConstructor = ({ index, data, id }) => {
   const dispatch = useDispatch();

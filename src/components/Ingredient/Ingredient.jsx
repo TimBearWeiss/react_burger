@@ -5,17 +5,17 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_CURRENT_INGREDIENT } from "../../services/actions/actions";
+import { GET_CURRENT_INGREDIENT } from "../../services/actions/ingredientDetailsModal";
 import { useCallback, useMemo } from "react";
 import { useDrag } from "react-dnd";
 
 const Ingredients = ({ item }) => {
   const dispatch = useDispatch();
   const chosenElements = useSelector(
-    (store) => store.ingredients.constructorIngredients
+    (store) => store.burgerConstructor.constructorIngredients
   ).filter((el) => item._id === el._id);
 
-  const buns = useSelector((store) => store.ingredients.constructorBuns);
+  const buns = useSelector((store) => store.burgerConstructor.constructorBuns);
 
   const openModal = useCallback(() => {
     dispatch({ type: GET_CURRENT_INGREDIENT, item: item });

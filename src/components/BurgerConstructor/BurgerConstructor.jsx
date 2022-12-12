@@ -10,10 +10,13 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../Modal/Modal";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
-import { getOrder } from "../../services/actions/actions";
-import { addIngredientInConstructor } from "../../services/actions/actions";
-import { addBunsInConstructor } from "../../services/actions/actions";
-import { CLOSE_ORDER_MODAL } from "../../services/actions/actions";
+import { getOrder } from "../../services/actions/order";
+import {
+  addIngredientInConstructor,
+  addBunsInConstructor,
+} from "../../services/actions/burgerConstructor";
+
+import { CLOSE_ORDER_MODAL } from "../../services/actions/order";
 import emptyPlace from "../../images/emptyPlace.svg";
 import { v4 as uuidv4 } from "uuid";
 
@@ -24,10 +27,10 @@ const BurgerConstructor = () => {
 
   // ингредиенты конструтора
   const midIngredients = useSelector(
-    (store) => store.ingredients.constructorIngredients
+    (store) => store.burgerConstructor.constructorIngredients
   );
 
-  const buns = useSelector((store) => store.ingredients.constructorBuns);
+  const buns = useSelector((store) => store.burgerConstructor.constructorBuns);
 
   const allIngredients = [...midIngredients, buns];
 
@@ -62,7 +65,7 @@ const BurgerConstructor = () => {
     dispatch({ type: CLOSE_ORDER_MODAL });
   }, [dispatch]);
 
-  const numberOfOrder = useSelector((store) => store.ingredients.orderNumber);
+  const numberOfOrder = useSelector((store) => store.order.orderNumber);
 
   // функция перетаскивания на прием
 

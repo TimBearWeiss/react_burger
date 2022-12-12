@@ -1,10 +1,16 @@
 import { combineReducers } from "redux";
-import { defaultReducer } from "../services/reducers/reducer";
+import { ingredientsReducer } from "./reducers/ingredients";
+import { constructorReducer } from "../services/reducers/burgerConstructor";
+import { ingredientDetailsModalReducer } from "../services/reducers/ingredientDetailsModal";
+import { orderReducer } from "../services/reducers/order";
 import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 export const rootReducer = combineReducers({
-  ingredients: defaultReducer,
+  ingredients: ingredientsReducer,
+  burgerConstructor: constructorReducer,
+  ingredientsDetailModal: ingredientDetailsModalReducer,
+  order: orderReducer,
 });
 
 const composeEnhancers =
