@@ -6,7 +6,7 @@ import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetail/IngredientDetail.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useMemo } from "react";
-import { getAllIngredients } from "../../services/actions/actions";
+import { getAllIngredients } from "../../services/actions/ingredients";
 import { useCallback } from "react";
 import { GET_CURRENT_INGREDIENT } from "../../services/actions/ingredientDetailsModal";
 import { useInView } from "react-intersection-observer";
