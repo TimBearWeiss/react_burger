@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import IngredientStyle from "./BurgerIngredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredient from "../Ingredient/Ingredient";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetail/IngredientDetail.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { getAllIngredients } from "../../services/actions/actions";
 import { useCallback } from "react";
 import { GET_CURRENT_INGREDIENT } from "../../services/actions/actions";
+import { useInView } from "react-intersection-observer";
 
 const BurgerIngredients = () => {
   // получаем все ингредиенты
@@ -33,9 +34,17 @@ const BurgerIngredients = () => {
 
   // находим игредиенты
 
-  const buns = allIngredients.filter((data) => data.type === "bun");
-  const sauces = allIngredients.filter((data) => data.type === "sauce");
-  const fillings = allIngredients.filter((data) => data.type === "main");
+  const buns = useMemo(() => {
+    return allIngredients.filter((data) => data.type === "bun");
+  });
+
+  const sauces = useMemo(() => {
+    return allIngredients.filter((data) => data.type === "sauce");
+  });
+
+  const fillings = useMemo(() => {
+    return allIngredients.filter((data) => data.type === "main");
+  });
 
   //функция таба по клику
   const [current, setCurrent] = React.useState("one");
@@ -49,53 +58,20 @@ const BurgerIngredients = () => {
 
   // продолжение работы таба
 
-  const options = {
-    root: document.querySelector("#burgerscroll"),
-    rootMargin: "0px 0px -700px 0px",
-    threshold: 0.1,
-  };
+  const [bunsRef, bunsInView] = useInView({ threshold: 0 });
+  const [sausesRef, sausesInView] = useInView({ threshold: 0 });
+  const [mainRef, mainInView] = useInView({ threshold: 0 });
 
-  function callbackThree(entries) {
-    if (entries[0].isIntersecting && entries[0].time > 1000) {
+  useEffect(() => {
+    if (bunsInView) {
+      setCurrent("one");
+    } else if (sausesInView) {
+      setCurrent("two");
+    } else if (mainInView) {
       setCurrent("three");
     }
-  }
+  }, [bunsInView, sausesInView, mainInView]);
 
-  function callbackTwo(entries) {
-    if (entries[0].isIntersecting && entries[0].time > 1000) {
-      setCurrent("two");
-    }
-  }
-
-  function callbackOne(entries) {
-    if (entries[0].isIntersecting && entries[0].time > 1000) {
-      setCurrent("one");
-    }
-  }
-
-  const observer3 = new IntersectionObserver(callbackThree, options);
-
-  const observer2 = new IntersectionObserver(callbackTwo, options);
-
-  const observer1 = new IntersectionObserver(callbackOne, options);
-
-  useEffect(() => {
-    const target = document.querySelector("#three");
-
-    observer3.observe(target);
-  }, []);
-
-  useEffect(() => {
-    const target = document.querySelector("#two");
-
-    observer2.observe(target);
-  }, []);
-
-  useEffect(() => {
-    const target = document.querySelector("#one");
-
-    observer1.observe(target);
-  }, []);
   // конец
 
   return (
@@ -122,7 +98,11 @@ const BurgerIngredients = () => {
         </Tab>
       </div>
       <div id={"burgerscroll"} className={IngredientStyle.scroll}>
-        <h2 id="one" className="text text_type_main-medium mt-10 mb-1">
+        <h2
+          ref={bunsRef}
+          id="one"
+          className="text text_type_main-medium mt-10 mb-1"
+        >
           Булки
         </h2>
         <div className={IngredientStyle.box}>
@@ -130,7 +110,11 @@ const BurgerIngredients = () => {
             <Ingredient item={item} key={item._id} />
           ))}
         </div>
-        <h2 id="two" className="text text_type_main-medium mt-10 mb-1">
+        <h2
+          ref={sausesRef}
+          id="two"
+          className="text text_type_main-medium mt-10 mb-1"
+        >
           Соусы
         </h2>
         <div className={IngredientStyle.box}>
@@ -138,7 +122,11 @@ const BurgerIngredients = () => {
             <Ingredient item={item} key={item._id} />
           ))}
         </div>
-        <h2 id="three" className="text text_type_main-medium mt-10 mb-1">
+        <h2
+          ref={mainRef}
+          id="three"
+          className="text text_type_main-medium mt-10 mb-1"
+        >
           Начинки
         </h2>
         <div className={IngredientStyle.box}>

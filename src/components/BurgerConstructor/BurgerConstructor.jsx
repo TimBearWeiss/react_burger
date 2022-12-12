@@ -108,7 +108,6 @@ const BurgerConstructor = () => {
             />
           ) : (
             <ConstructorElement
-              key={buns._id}
               type="top"
               text={`${buns.name} (верх)`}
               price={buns.price}
@@ -140,7 +139,6 @@ const BurgerConstructor = () => {
             />
           ) : (
             <ConstructorElement
-              key={buns._id}
               type="bottom"
               text={`${buns.name} (низ)`}
               price={buns.price}
