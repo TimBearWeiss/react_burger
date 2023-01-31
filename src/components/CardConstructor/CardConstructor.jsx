@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useDrop } from "react-dnd";
 import CardConstructorStyle from "./CardConstructor.module.css";
 import {

@@ -6,10 +6,6 @@
   position: relative;
 }
 
-.active {
-  color: #f2f2f3;
-}
-
 .menu {
   max-width: 1280px;
   display: flex;
@@ -28,19 +24,39 @@
   margin-left: -145px;
 }
 
+.icon {
+  margin-right: 8px;
+}
+
 .link {
   text-decoration: none;
   padding: 16px 20px;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  color: #8585ad;
+  /* color: white; */
+}
+
+.active {
+  text-decoration: none;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  color: #f2f2f3;
+  text-decoration: none;
 }
 
 .navigation {
   display: flex;
   flex-direction: row;
-
   z-index: 2;
+  margin: 0px;
+}
+
+.profile {
+  margin: 0px;
 }
 
 .list {

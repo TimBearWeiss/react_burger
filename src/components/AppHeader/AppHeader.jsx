@@ -5,6 +5,7 @@ import {
   ListIcon,
   ProfileIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { NavLink } from "react-router-dom";
 
 const AppHeader = () => {
   return (
@@ -15,32 +16,90 @@ const AppHeader = () => {
       <nav className={headerStyles.menu}>
         <ul className={headerStyles.navigation}>
           <li className={headerStyles.list}>
-            <a className={headerStyles.link} href={"#"}>
-              <BurgerIcon type="main" />
-              <p
-                className={`${headerStyles.active} text text_type_main-default  m-1`}
-              >
-                Конструктор
-              </p>
-            </a>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? headerStyles.active : headerStyles.link
+              }
+              to={"/"}
+            >
+              {({ isActive }) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                  className={"text text_type_main-default m-1"}
+                >
+                  <BurgerIcon type={isActive ? "primary" : "secondary"} />
+                  <p
+                    style={{
+                      marginLeft: "8px",
+                    }}
+                  >
+                    Конструктор
+                  </p>
+                </div>
+              )}
+            </NavLink>
           </li>
           <li className={headerStyles.list}>
-            <a className={headerStyles.link} href={"#"}>
-              <ListIcon type="secondary" />
-              <p className="text text_type_main-default text_color_inactive m-1">
-                Лента заказов
-              </p>
-            </a>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? headerStyles.active : headerStyles.link
+              }
+              to={"/feed"}
+            >
+              {({ isActive }) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                  className={"text text_type_main-default m-1"}
+                >
+                  <ListIcon type={isActive ? "primary" : "secondary"} />
+                  <p
+                    style={{
+                      marginLeft: "8px",
+                    }}
+                  >
+                    Лента заказов
+                  </p>
+                </div>
+              )}
+            </NavLink>
           </li>
         </ul>
         <ul className={headerStyles.profile}>
           <li className={headerStyles.list}>
-            <a className={headerStyles.link} href={"#"}>
-              <ProfileIcon type="secondary" />
-              <p className="text text_type_main-default text_color_inactive m-1">
-                Личный кабинет
-              </p>
-            </a>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? headerStyles.active : headerStyles.link
+              }
+              to={"/profile"}
+            >
+              {({ isActive }) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                  className={"text text_type_main-default m-1"}
+                >
+                  <ProfileIcon type={isActive ? "primary" : "secondary"} />
+                  <p
+                    style={{
+                      marginLeft: "8px",
+                    }}
+                  >
+                    Личный кабинет
+                  </p>
+                </div>
+              )}
+            </NavLink>
           </li>
         </ul>
       </nav>

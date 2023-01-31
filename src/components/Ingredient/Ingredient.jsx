@@ -3,14 +3,17 @@ import {
   Counter,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
+
 import { useDispatch, useSelector } from "react-redux";
 import { GET_CURRENT_INGREDIENT } from "../../services/actions/ingredientDetailsModal";
 import { useCallback, useMemo } from "react";
 import { useDrag } from "react-dnd";
+import { Link, useLocation } from "react-router-dom";
 
 const Ingredients = ({ item }) => {
   const dispatch = useDispatch();
+  const location = useLocation();
+
   const chosenElements = useSelector(
     (store) => store.burgerConstructor.constructorIngredients
   ).filter((el) => item._id === el._id);
@@ -39,10 +42,12 @@ const Ingredients = ({ item }) => {
   // конец
 
   return (
-    <div
+    <Link
+      to={`/ingredients/${item._id}`}
+      state={{ background: location }}
       ref={dragRef}
       onClick={openModal}
-      className={Ingredient.box}
+      className={`${Ingredient.box}`}
       id={item.id}
     >
       {count === 0 ? null : (
@@ -55,7 +60,7 @@ const Ingredients = ({ item }) => {
         <CurrencyIcon type="primary" />
       </div>
       <p className="text text_type_main-small">{item.name}</p>
-    </div>
+    </Link>
   );
 };
 

@@ -3,6 +3,7 @@ import { ingredientsReducer } from "./reducers/ingredients";
 import { constructorReducer } from "../services/reducers/burgerConstructor";
 import { ingredientDetailsModalReducer } from "../services/reducers/ingredientDetailsModal";
 import { orderReducer } from "../services/reducers/order";
+import { userReducer } from "../services/reducers/user";
 import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
@@ -11,6 +12,7 @@ export const rootReducer = combineReducers({
   burgerConstructor: constructorReducer,
   ingredientsDetailModal: ingredientDetailsModalReducer,
   order: orderReducer,
+  user: userReducer,
 });
 
 const composeEnhancers =

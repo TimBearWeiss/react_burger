@@ -1,0 +1,42 @@
+.link {
+  text-decoration: none;
+  color: #4c4cff;
+}
+
+.linkProfile {
+  text-decoration: none;
+  max-width: 320px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.linkProfile_active {
+  text-decoration: none;
+  max-width: 320px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  color: #f2f2f3;
+}
+
+.signature {
+  max-width: 320px;
+}
+
+.structure {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 27px;
+  margin-bottom: 20px;
+  justify-content: space-around;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
+}

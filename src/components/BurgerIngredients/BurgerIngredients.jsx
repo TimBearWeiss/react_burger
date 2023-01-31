@@ -2,11 +2,8 @@ import React, { useRef } from "react";
 import IngredientStyle from "./BurgerIngredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredient from "../Ingredient/Ingredient";
-import Modal from "../Modal/Modal";
-import IngredientDetails from "../IngredientDetail/IngredientDetail.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useMemo } from "react";
-import { getAllIngredients } from "../../services/actions/ingredients";
 import { useCallback } from "react";
 import { GET_CURRENT_INGREDIENT } from "../../services/actions/ingredientDetailsModal";
 import { useInView } from "react-intersection-observer";
@@ -14,9 +11,6 @@ import { useInView } from "react-intersection-observer";
 const BurgerIngredients = () => {
   // получаем все ингредиенты
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllIngredients("ingredients"));
-  }, [dispatch]);
 
   const allIngredients = useSelector(
     (store) => store.ingredients.allIngredients
@@ -76,11 +70,6 @@ const BurgerIngredients = () => {
 
   return (
     <section className={IngredientStyle.section}>
-      {currentIngredient && (
-        <Modal close={closeIngredientModal} heading={"Детали ингредиента"}>
-          <IngredientDetails ingredient={currentIngredient} />
-        </Modal>
-      )}
       <h1 className="text text_type_main-large mb-3">Соберите бургер</h1>
       <div style={{ display: "flex" }}>
         <Tab value="one" active={current === "one"} onClick={handleTabClick}>

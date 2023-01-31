@@ -19,11 +19,15 @@ import {
 import { CLOSE_ORDER_MODAL } from "../../services/actions/order";
 import emptyPlace from "../../images/emptyPlace.svg";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 import CardConstructor from "../../components/CardConstructor/CardConstructor";
 
 const BurgerConstructor = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const auth = useSelector((store) => store.user.userIsAuth);
+  const accessToken = useSelector((store) => store.user.accessToken);
 
   // ингредиенты конструтора
   const midIngredients = useSelector(
@@ -58,7 +62,11 @@ const BurgerConstructor = () => {
   });
 
   function openOrderModal() {
-    dispatch(getOrder("orders", IdIngredients));
+    if (!auth) {
+      navigate("/login");
+      return;
+    }
+    dispatch(getOrder("orders", IdIngredients, accessToken));
   }
 
   const closeOrderModal = useCallback(() => {
