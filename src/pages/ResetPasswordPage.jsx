@@ -6,11 +6,9 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./Pages.module.css";
-import { useDispatch } from "react-redux";
 import { resetPassword } from "../utils/userApi";
 
 function ResetPasswordPage() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [codeReset, setCodeReset] = React.useState("");
@@ -38,14 +36,7 @@ function ResetPasswordPage() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: "180px",
-      }}
-    >
+    <div className={styles.cell}>
       <h2 className="text text_type_main-medium mb-6">Восстановление пароля</h2>
       <form onSubmit={ChangePassword}>
         <PasswordInput
@@ -67,17 +58,10 @@ function ResetPasswordPage() {
           required
         />
         <Button
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginRight: "auto",
-            marginLeft: "auto",
-          }}
           htmlType="submit"
           type="primary"
           size="medium"
-          extraClass="mb-20"
+          extraClass={styles.loginButton + " mb-20"}
         >
           Сохранить
         </Button>

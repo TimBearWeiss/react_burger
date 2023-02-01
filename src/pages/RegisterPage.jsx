@@ -46,14 +46,7 @@ function RefisterPage() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: "180px",
-      }}
-    >
+    <div className={styles.cell}>
       <h2 className="text text_type_main-medium mb-6">Регистрация</h2>
       <form onSubmit={registrationUser}>
         <Input
@@ -81,17 +74,10 @@ function RefisterPage() {
           required
         />
         <Button
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginRight: "auto",
-            marginLeft: "auto",
-          }}
           htmlType="submit"
           type="primary"
           size="medium"
-          extraClass="mb-20"
+          extraClass={styles.loginButton + " mb-20"}
         >
           Зарегистрироваться
         </Button>

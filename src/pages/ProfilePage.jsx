@@ -22,7 +22,6 @@ function ProfilePage() {
   const [passwordValue, setPassword] = useState("");
 
   // сравнение
-
   const defaultData = [email, name, ""];
   const compareData = [emailValue, nameValue, passwordValue];
 
@@ -73,26 +72,9 @@ function ProfilePage() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        marginTop: "120px",
-      }}
-    >
-      <div
-        style={{
-          marginRight: "60px",
-        }}
-      >
-        <nav
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "start",
-          }}
-        >
+    <div className={styles.profileCell}>
+      <div className={styles.columnLinks}>
+        <nav className={styles.nav}>
           <NavLink
             end
             className={({ isActive }) =>

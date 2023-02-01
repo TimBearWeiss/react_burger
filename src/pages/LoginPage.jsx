@@ -41,14 +41,7 @@ function LoginPage() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: "180px",
-      }}
-    >
+    <div className={styles.cell}>
       <h2 className="text text_type_main-medium mb-6">Вход</h2>
       <form onSubmit={loginClickHandle}>
         <EmailInput
@@ -66,17 +59,10 @@ function LoginPage() {
           required
         />
         <Button
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginRight: "auto",
-            marginLeft: "auto",
-          }}
           htmlType="submit"
           type="primary"
           size="medium"
-          extraClass="mb-20"
+          extraClass={styles.loginButton + " mb-20"}
         >
           Войти
         </Button>
@@ -88,7 +74,7 @@ function LoginPage() {
         </Link>
       </p>
       <p className="text text_type_main-default text_color_inactive">
-        Забыли пароль?{" "}
+        Забыли пароль?
         <Link className={styles.link} to={"/forgot-password"}>
           Восстановить пароль
         </Link>

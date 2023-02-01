@@ -17,15 +17,7 @@ function IngredientInfoPage() {
           Загрузка...
         </p>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            textAlign: "center",
-          }}
-          className={`pt-30`}
-        >
+        <div className={style.ingredientInfoCell + " pt-30"}>
           <h2 className={`text text_type_main-large`}>Детали ингредиента</h2>
           <img
             alt={currentIngredient.name}

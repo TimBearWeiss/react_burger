@@ -35,6 +35,9 @@ function App() {
   }
   return (
     <>
+      {/* В 6 версии react router у Routes чайлд может быть только Route
+      Поэтому не смогу сделать как в замечании, спасибо за вашу работу */}
+
       <AppHeader />
       <main className={appStyle.main}>
         <Routes location={background || location}>

@@ -1,30 +1,17 @@
-import React, { useRef } from "react";
+import React from "react";
 import IngredientStyle from "./BurgerIngredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredient from "../Ingredient/Ingredient";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useMemo } from "react";
-import { useCallback } from "react";
-import { GET_CURRENT_INGREDIENT } from "../../services/actions/ingredientDetailsModal";
 import { useInView } from "react-intersection-observer";
 
 const BurgerIngredients = () => {
   // получаем все ингредиенты
-  const dispatch = useDispatch();
 
   const allIngredients = useSelector(
     (store) => store.ingredients.allIngredients
   );
-
-  // модальное окно
-
-  const currentIngredient = useSelector(
-    (store) => store.ingredientsDetailModal.currentIngredient
-  );
-
-  const closeIngredientModal = useCallback(() => {
-    dispatch({ type: GET_CURRENT_INGREDIENT, item: null });
-  }, [dispatch, null]);
 
   // находим игредиенты
 

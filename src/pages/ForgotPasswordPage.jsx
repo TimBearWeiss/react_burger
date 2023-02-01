@@ -27,14 +27,7 @@ function ForgotPasswordPage() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: "180px",
-      }}
-    >
+    <div className={styles.cell}>
       <h2 className="text text_type_main-medium mb-6">Восстановление пароля</h2>
       <form onSubmit={recoverPassword}>
         <EmailInput
@@ -46,23 +39,16 @@ function ForgotPasswordPage() {
           required
         />
         <Button
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginRight: "auto",
-            marginLeft: "auto",
-          }}
           htmlType="submit"
           type="primary"
           size="medium"
-          extraClass="mb-20"
+          extraClass={styles.forgotButton + " mb-20"}
         >
           Восстановить
         </Button>
       </form>
       <p className="text text_type_main-default text_color_inactive">
-        Вспомнили пароль?{" "}
+        Вспомнили пароль?
         <Link className={styles.link} to={"/login"}>
           Войти
         </Link>
