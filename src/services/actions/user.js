@@ -7,6 +7,7 @@ import {
   getNewAuthToken,
   updateUserData,
 } from "../../utils/userApi";
+
 import { setCookie } from "../../utils/data";
 export const REGISTER_USER_REQUEST = "REGISTER_USER_REQUEST";
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
@@ -125,10 +126,10 @@ export function logOut(url, token) {
   };
 }
 
-export function passwordChangeStep(url, email, redirect) {
+export function passwordChangeStep(email, redirect) {
   return function (dispatch) {
     dispatch({ type: PASSWORD_CHANGE_STEP_REQUEST });
-    sendCode(url, email)
+    sendCode("password-reset", email)
       .then((res) => {
         if (res && res.success) {
           dispatch({ type: PASSWORD_CHANGE_STEP_SUCCESS });

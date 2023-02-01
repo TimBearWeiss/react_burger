@@ -7,7 +7,7 @@ import ForgotPasswordPage from "../../pages/ForgotPasswordPage";
 import ResetPasswordPage from "../../pages/ResetPasswordPage";
 import ProfilePage from "../../pages/ProfilePage";
 import OrderListPage from "../../pages/OrderListPage";
-import ProtectedRouteElement from "../../pages/ProtectedRouteElement";
+import ProtectedRouteElement from "../ProtectedRouteElement/ProtectedRouteElement";
 import IngredientInfoPage from "../../pages/IngredientInfoPage";
 import NotFoundPage from "../../pages/NotFoundPage";
 import Modal from "../Modal/Modal";
@@ -29,6 +29,10 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const background = location.state && location.state.background;
+
+  function goBack() {
+    navigate(-1);
+  }
   return (
     <>
       <AppHeader />
@@ -84,12 +88,7 @@ function App() {
             <Route
               path="/ingredients/:id"
               element={
-                <Modal
-                  close={() => {
-                    navigate(-1);
-                  }}
-                  heading={"Детали ингредиента"}
-                >
+                <Modal close={goBack} heading={"Детали ингредиента"}>
                   <IngredientDetails ingredient={currentIngredient} />
                 </Modal>
               }

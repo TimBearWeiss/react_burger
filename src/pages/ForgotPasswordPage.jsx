@@ -23,9 +23,7 @@ function ForgotPasswordPage() {
 
   const recoverPassword = (e) => {
     e.preventDefault();
-    dispatch(
-      passwordChangeStep("password-reset", email, redirectToResetPassword)
-    );
+    dispatch(passwordChangeStep(email, redirectToResetPassword));
   };
 
   return (
