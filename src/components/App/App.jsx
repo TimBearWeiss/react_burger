@@ -16,12 +16,25 @@ import { getAllIngredients } from "../../services/actions/ingredients";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import CurrentOrderPage from "../../pages/CurrentOrderPage";
+import CurrentOrderInModal from "../CurrentOrderInModal/CurrentOrderInModal";
+import CurrentOrderInModalProfile from "../CurrentOrderInModalProfile/CurrentOrderInModalProfile";
+import CurrentOrderPageInProfile from "../../pages/CurrentOrderPageProfile";
+import {
+  wsConnectionStart,
+  wsConnectionClosed,
+} from "../../services/actions/wsAction";
+import { WS_URL } from "../../utils/api";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllIngredients("ingredients"));
   }, [dispatch]);
+
+  // gtql; bp ghjabkz
+
+  // fsfghlafgdfg
 
   const currentIngredient = useSelector(
     (store) => store.ingredientsDetailModal.currentIngredient
@@ -35,9 +48,6 @@ function App() {
   }
   return (
     <>
-      {/* В 6 версии react router у Routes чайлд может быть только Route
-      Поэтому не смогу сделать как в замечании, спасибо за вашу работу */}
-
       <AppHeader />
       <main className={appStyle.main}>
         <Routes location={background || location}>
@@ -82,7 +92,13 @@ function App() {
               </ProtectedRouteElement>
             }
           />
-          <Route path="/feed" element={<OrderListPage />} />
+          <Route
+            path="/profile/orders/:id"
+            element={<CurrentOrderPageInProfile />}
+          />
+
+          <Route path="/feed" element={<OrderListPage link={"feed"} />} />
+          <Route path="/feed/:id" element={<CurrentOrderPage />} />
           <Route path="/ingredients/:id" element={<IngredientInfoPage />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
@@ -93,6 +109,30 @@ function App() {
               element={
                 <Modal close={goBack} heading={"Детали ингредиента"}>
                   <IngredientDetails ingredient={currentIngredient} />
+                </Modal>
+              }
+            />
+          </Routes>
+        )}
+        {background && (
+          <Routes>
+            <Route
+              path="/feed/:id"
+              element={
+                <Modal close={goBack}>
+                  <CurrentOrderInModal />
+                </Modal>
+              }
+            />
+          </Routes>
+        )}
+        {background && (
+          <Routes>
+            <Route
+              path="/profile/orders/:id"
+              element={
+                <Modal close={goBack}>
+                  <CurrentOrderInModalProfile />
                 </Modal>
               }
             />

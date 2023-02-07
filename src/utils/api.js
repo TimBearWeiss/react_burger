@@ -1,6 +1,7 @@
 import { checkResponse } from "./data";
 
 const BASE_URL = "https://norma.nomoreparties.space/api";
+const WS_URL = "wss://norma.nomoreparties.space/orders";
 
 const getIngredients = (url) => {
   return fetch(`${BASE_URL}/${url}`).then(checkResponse);
@@ -20,4 +21,4 @@ const getNumberOfOrder = (url, idIngredients, accessToken) => {
   }).then(checkResponse);
 };
 
-export { getIngredients, getNumberOfOrder, BASE_URL };
+export { getIngredients, getNumberOfOrder, BASE_URL, WS_URL };

@@ -11,15 +11,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCookie, deleteCookie } from "../utils/data";
 import { logOut } from "../services/actions/user";
 import { changeUserData } from "../services/actions/user";
+import OrderListElement from "../components/OrderListElement/OrderListElement";
+
+import {
+  wsConnectionStart,
+  wsConnectionClosed,
+} from "../services/actions/wsAction";
+import { WS_URL } from "../utils/api";
+import { useLocation } from "react-router-dom";
 
 function ProfilePage() {
   const { email, name } = useSelector((store) => store.user.user);
   const accessToken = useSelector((store) => store.user.accessToken);
+  const location = useLocation();
   const dispatch = useDispatch();
   const [isChanged, setIsChanged] = useState(false);
   const [nameValue, setName] = useState(name);
   const [emailValue, setEmail] = useState(email);
   const [passwordValue, setPassword] = useState("");
+
+  const allOrders = useSelector((store) => store.orderFeed.allOrders.reverse());
+
+  useEffect(() => {
+    dispatch(
+      wsConnectionStart(`${WS_URL}?token=${accessToken.split("Bearer ")[1]}`)
+    );
+    return () => dispatch(wsConnectionClosed());
+  }, [dispatch]);
 
   // сравнение
   const defaultData = [email, name, ""];
@@ -123,7 +141,7 @@ function ProfilePage() {
           <Route
             path=""
             element={
-              <form onSubmit={saveChanges}>
+              <form style={{ minWidth: "596px" }} onSubmit={saveChanges}>
                 <Input
                   type={"text"}
                   placeholder={"Имя"}
@@ -153,7 +171,10 @@ function ProfilePage() {
                 />
                 {isChanged && (
                   <div
-                    style={{ display: "flex", justifyContent: "space-around" }}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                    }}
                   >
                     <Button
                       type="primary"
@@ -180,8 +201,15 @@ function ProfilePage() {
           <Route
             path="orders"
             element={
-              <div style={{ minWidth: "480px", fontSize: "40px" }}>
-                В разработке
+              <div className={styles.scrollProfile}>
+                {allOrders.map((el) => (
+                  <OrderListElement
+                    link={"profile/orders"}
+                    status={el.status}
+                    item={el}
+                    key={el._id}
+                  />
+                ))}
               </div>
             }
           />

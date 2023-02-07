@@ -8,7 +8,6 @@ function IngredientInfoPage() {
     (store) => store.ingredients.allIngredients
   );
   const currentIngredient = allIngredients.find((e) => e._id === id);
-  console.log(currentIngredient);
 
   return (
     <>
