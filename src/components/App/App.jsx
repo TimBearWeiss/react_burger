@@ -27,14 +27,20 @@ import {
 import { WS_URL } from "../../utils/api";
 
 function App() {
+  const accessToken = useSelector((store) => store.user.accessToken);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllIngredients("ingredients"));
   }, [dispatch]);
 
   // gtql; bp ghjabkz
+  const allOrders = useSelector((store) => store.orderFeed.allOrders);
 
   // fsfghlafgdfg
+
+  const allIngredients = useSelector(
+    (store) => store.ingredients.allIngredients
+  );
 
   const currentIngredient = useSelector(
     (store) => store.ingredientsDetailModal.currentIngredient
@@ -50,77 +56,81 @@ function App() {
     <>
       <AppHeader />
       <main className={appStyle.main}>
-        <Routes location={background || location}>
-          <Route path="/" element={<HomePage />} />
-          <Route
-            path="/login"
-            element={
-              <ProtectedRouteElement forAuthUser={true}>
-                <LoginPage />
-              </ProtectedRouteElement>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <ProtectedRouteElement forAuthUser={true}>
-                <RegisterPage />
-              </ProtectedRouteElement>
-            }
-          />
-          <Route
-            path="/forgot-password"
-            element={
-              <ProtectedRouteElement forAuthUser={true}>
-                <ForgotPasswordPage />
-              </ProtectedRouteElement>
-            }
-          />
-          <Route
-            path="/reset-password"
-            element={
-              <ProtectedRouteElement forAuthUser={true}>
-                <ResetPasswordPage />
-              </ProtectedRouteElement>
-            }
-          />
-          <Route
-            path="/profile/*"
-            element={
-              <ProtectedRouteElement forAuthUser={false}>
-                <ProfilePage />
-              </ProtectedRouteElement>
-            }
-          />
-          <Route
-            path="/profile/orders/:id"
-            element={<CurrentOrderPageInProfile />}
-          />
+        {allIngredients && (
+          <Routes location={background || location}>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/login"
+              element={
+                <ProtectedRouteElement forAuthUser={true}>
+                  <LoginPage />
+                </ProtectedRouteElement>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <ProtectedRouteElement forAuthUser={true}>
+                  <RegisterPage />
+                </ProtectedRouteElement>
+              }
+            />
+            <Route
+              path="/forgot-password"
+              element={
+                <ProtectedRouteElement forAuthUser={true}>
+                  <ForgotPasswordPage />
+                </ProtectedRouteElement>
+              }
+            />
+            <Route
+              path="/reset-password"
+              element={
+                <ProtectedRouteElement forAuthUser={true}>
+                  <ResetPasswordPage />
+                </ProtectedRouteElement>
+              }
+            />
+            <Route
+              path="/profile/*"
+              element={
+                <ProtectedRouteElement forAuthUser={false}>
+                  <ProfilePage />
+                </ProtectedRouteElement>
+              }
+            />
+            <Route
+              path="/profile/orders/:id"
+              element={<CurrentOrderPageInProfile accessToken={accessToken} />}
+            />
 
-          <Route path="/feed" element={<OrderListPage link={"feed"} />} />
-          <Route path="/feed/:id" element={<CurrentOrderPage />} />
-          <Route path="/ingredients/:id" element={<IngredientInfoPage />} />
-          <Route path="/*" element={<NotFoundPage />} />
-        </Routes>
-        {background && (
+            <Route path="/feed" element={<OrderListPage link={"feed"} />} />
+            <Route path="/feed/:id" element={<CurrentOrderPage />} />
+            <Route path="/ingredients/:id" element={<IngredientInfoPage />} />
+            <Route path="/*" element={<NotFoundPage />} />
+          </Routes>
+        )}
+
+        {background && allIngredients && (
           <Routes>
             <Route
               path="/ingredients/:id"
               element={
                 <Modal close={goBack} heading={"Детали ингредиента"}>
-                  <IngredientDetails ingredient={currentIngredient} />
+                  <IngredientDetails allIngredients={allIngredients} />
                 </Modal>
               }
             />
           </Routes>
         )}
+
         {background && (
           <Routes>
             <Route
               path="/feed/:id"
               element={
                 <Modal close={goBack}>
-                  <CurrentOrderInModal />
+                  <CurrentOrderInModal allIngredients={allIngredients} />
                 </Modal>
               }
             />
@@ -132,7 +142,10 @@ function App() {
               path="/profile/orders/:id"
               element={
                 <Modal close={goBack}>
-                  <CurrentOrderInModalProfile />
+                  <CurrentOrderInModalProfile
+                    allOrders={allOrders}
+                    allIngredients={allIngredients}
+                  />
                 </Modal>
               }
             />

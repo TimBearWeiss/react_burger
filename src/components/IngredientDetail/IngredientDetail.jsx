@@ -1,7 +1,13 @@
 import style from "./IngredientDetail.module.css";
 import { ingredietnPropTypes } from "../../utils/data.js";
+import { useParams } from "react-router-dom";
 
-const IngredientDetails = ({ ingredient }) => {
+const IngredientDetails = ({ allIngredients }) => {
+
+  const { id } = useParams();
+  console.log("inDetails", id, allIngredients)
+  const ingredient = allIngredients.find((item) => item._id === id)
+
   return (
     <div className={style.box} key={ingredient._id}>
       <img className={style.picture} src={ingredient.image} alt="ингредиент" />

@@ -6,7 +6,7 @@ import {
 
 const defaultState = {
   // полчение ингредиентов
-  allIngredients: [],
+  allIngredients: null,
   allIngredientsRequest: false,
   allIngredientsFailed: false,
 };

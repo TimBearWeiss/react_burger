@@ -12,22 +12,16 @@ import styles from "../components/CurrentOrderInModal/CurrentOrderInModal.module
 
 // я не понимаю, почему не могу получить accessToken, для того, чтобы отрисовать пейдж.
 
-function CurrentOrderPageInProfile() {
+function CurrentOrderPageInProfile({}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const isUserAuth = useSelector((store) => store.user.userIsAuth);
+  const accessToken = useSelector((store) => store.user.accessToken);
 
   useEffect(() => {
-    const token = getCookie("token");
-    if (token && !isUserAuth) {
-      dispatch(updateToken("token", getCookie("token")));
-    } else {
-      console.log("Токен не найден");
-    }
-  }, []);
-
-  const accessToken = useSelector((store) => store.user.accessToken);
+    console.log(accessToken);
+  }, [accessToken]);
 
   useEffect(() => {
     dispatch(
@@ -39,10 +33,9 @@ function CurrentOrderPageInProfile() {
   const allOrders = useSelector((store) => store.orderFeed.allOrders.reverse());
   const currentOrder = allOrders.find((item) => item._id === id);
 
-  console.log(currentOrder);
   return (
     <>
-      {currentOrder === undefined ? (
+      {currentOrder === null ? (
         <p>Загрузка</p>
       ) : (
         <div style={{ maxWidth: "640px", marginTop: "120px" }}>

@@ -32,13 +32,6 @@ function ProfilePage() {
 
   const allOrders = useSelector((store) => store.orderFeed.allOrders.reverse());
 
-  // useEffect(() => {
-  //   dispatch(
-  //     wsConnectionStart(`${WS_URL}?token=${accessToken.split("Bearer ")[1]}`)
-  //   );
-  //   return () => dispatch(wsConnectionClosed());
-  // }, [dispatch]);
-
   // сравнение
   const defaultData = [email, name, ""];
   const compareData = [emailValue, nameValue, passwordValue];

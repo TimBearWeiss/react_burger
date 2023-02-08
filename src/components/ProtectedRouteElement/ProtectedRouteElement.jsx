@@ -11,6 +11,8 @@ function ProtectedRouteElement({ children, forAuthUser }) {
   const dispatch = useDispatch();
   const location = useLocation();
 
+  const from = location.state?.from.pathname || "/";
+
   useEffect(() => {
     const token = getCookie("token");
     if (token && !isUserAuth) {
@@ -32,7 +34,7 @@ function ProtectedRouteElement({ children, forAuthUser }) {
   if (forAuthUser) {
     if (isUserAuth) {
       // нельзя открыть логины
-      return <Navigate to="/profile" replace state={{ from: location }} />;
+      return <Navigate to={from} />;
     } else {
       return children;
     }

@@ -5,6 +5,7 @@ import Ingredient from "../Ingredient/Ingredient";
 import { useSelector } from "react-redux";
 import { useEffect, useMemo } from "react";
 import { useInView } from "react-intersection-observer";
+import Ingredients from "../Ingredient/Ingredient";
 
 const BurgerIngredients = () => {
   // получаем все ингредиенты
@@ -83,7 +84,7 @@ const BurgerIngredients = () => {
         </h2>
         <div className={IngredientStyle.box}>
           {buns.map((item) => (
-            <Ingredient item={item} key={item._id} />
+            <Ingredients item={item} key={item._id} />
           ))}
         </div>
         <h2
