@@ -7,14 +7,15 @@ import {
 import { WS_URL } from "../../utils/api";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getCookie } from "../../utils/data";
 
 function StoryList({ allOrders }) {
   const dispatch = useDispatch();
-  const accessToken = useSelector((store) => store.user.accessToken);
+
+  const accessToken = getCookie("accessToken");
+  console.log(accessToken);
   useEffect(() => {
-    dispatch(
-      wsConnectionStart(`${WS_URL}?token=${accessToken.split("Bearer ")[1]}`)
-    );
+    dispatch(wsConnectionStart(`${WS_URL}?token=${accessToken}`));
     return () => dispatch(wsConnectionClosed());
   }, [dispatch]);
   return (

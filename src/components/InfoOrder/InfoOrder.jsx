@@ -57,6 +57,8 @@ function InfoOrder({ currentOrder }) {
     }
   );
 
+  console.log(uniqueIngredients);
+
   function counter(arr, index) {
     return arr.filter((item) => item == index).length;
   }

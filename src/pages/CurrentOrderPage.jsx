@@ -59,6 +59,8 @@ function CurrentOrderPage() {
     return arr.filter((item) => item == index).length;
   }
 
+  console.log(currentOrder);
+  console.log(allIngredients);
   return (
     <>
       {currentOrder === undefined ? (

@@ -6,21 +6,21 @@ import { getCookie } from "../../utils/data";
 import PropTypes from "prop-types";
 
 function ProtectedRouteElement({ children, forAuthUser }) {
-  const isUserAuth = useSelector((store) => store.user.userIsAuth);
+  const isUserAuth = getCookie("accessToken");
   const isRequest = useSelector((store) => store.user.userDataRequest);
   const dispatch = useDispatch();
   const location = useLocation();
 
   const from = location.state?.from.pathname || "/";
 
-  useEffect(() => {
-    const token = getCookie("token");
-    if (token && !isUserAuth) {
-      dispatch(updateToken("token", getCookie("token")));
-    } else {
-      console.log("Токен не найден");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = getCookie("token");
+  //   if (token && !isUserAuth) {
+  //     dispatch(updateToken("token", getCookie("token")));
+  //   } else {
+  //     console.log("Токен не найден");
+  //   }
+  // }, []);
 
   if (isRequest)
     return (

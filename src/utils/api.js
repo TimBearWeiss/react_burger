@@ -1,4 +1,5 @@
 import { checkResponse } from "./data";
+import { getCookie } from "../utils/data";
 
 const BASE_URL = "https://norma.nomoreparties.space/api";
 const WS_URL = "wss://norma.nomoreparties.space/orders";
@@ -13,7 +14,7 @@ const getNumberOfOrder = (url, idIngredients, accessToken) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: accessToken,
+      Authorization: "Bearer " + getCookie("accessToken"),
     },
     body: JSON.stringify({
       ingredients: idIngredients,

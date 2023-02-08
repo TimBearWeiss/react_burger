@@ -1,9 +1,11 @@
 import { checkResponse } from "./data";
 import { BASE_URL } from "./api";
-const BASE_USER_URL = "https://norma.nomoreparties.space/api/auth";
+import { getCookie, setCookie } from "./data";
+const BASE_USER_URL = "https://norma.nomoreparties.space/api";
 
-const getNewUser = async (url, formData) => {
-  return await fetch(`${BASE_USER_URL}/${url}`, {
+//регистрация пользователя
+const postNewUserInfo = async (formData) => {
+  return await fetch(`${BASE_USER_URL}/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -16,8 +18,9 @@ const getNewUser = async (url, formData) => {
   }).then(checkResponse);
 };
 
-const logIn = async (url, email, password) => {
-  return await fetch(`${BASE_USER_URL}/${url}`, {
+//логин
+const logIn = async (email, password) => {
+  return await fetch(`${BASE_USER_URL}/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -29,30 +32,33 @@ const logIn = async (url, email, password) => {
   }).then(checkResponse);
 };
 
-const getUserData = async (url, token) => {
-  return await fetch(`${BASE_USER_URL}/${url}`, {
+//получить данные пользователя по токену
+const getUserData = async () => {
+  return await fetch(`${BASE_USER_URL}/auth/user`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: token,
+      Authorization: "Bearer " + getCookie("accessToken"),
     },
   }).then(checkResponse);
 };
 
-const userLogOut = async (url, token) => {
-  return await fetch(`${BASE_USER_URL}/${url}`, {
+//логаут
+const userLogOut = async () => {
+  return await fetch(`${BASE_USER_URL}/auth/logout`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      token: token,
+      token: getCookie("refreshToken"),
     }),
   }).then(checkResponse);
 };
 
-const sendCode = async (url, email) => {
-  return await fetch(`${BASE_URL}/${url}`, {
+//отправить код подтверждения на почту
+const sendCode = async (email) => {
+  return await fetch(`${BASE_URL}/password-reset`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -63,8 +69,9 @@ const sendCode = async (url, email) => {
   }).then(checkResponse);
 };
 
-const resetPassword = async (url, password, token) => {
-  return await fetch(`${BASE_URL}/${url}`, {
+//сборс пароля по токену подтверждения из почты
+const resetPassword = async (password, token) => {
+  return await fetch(`${BASE_URL}/password-reset/reset}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -76,31 +83,33 @@ const resetPassword = async (url, password, token) => {
   }).then(checkResponse);
 };
 
-const getNewAuthToken = async (url, token) => {
-  return await fetch(`${BASE_USER_URL}/${url}`, {
+//обновить токен
+const getNewAuthToken = async () => {
+  return await fetch(`${BASE_USER_URL}/auth/token`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      token: token,
+      token: getCookie("refreshToken"),
     }),
   }).then(checkResponse);
 };
 
-const updateUserData = async (url, token, form) => {
-  return await fetch(`${BASE_USER_URL}/${url}`, {
+//обновление данных пользователя (с токеном)
+const updateUserData = async (form) => {
+  return await fetch(`${BASE_USER_URL}/auth/user`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      Authorization: token,
+      Authorization: "Bearer " + getCookie("accessToken"),
     },
     body: JSON.stringify(form),
   }).then(checkResponse);
 };
 
 export {
-  getNewUser,
+  postNewUserInfo,
   logIn,
   getUserData,
   userLogOut,

@@ -37,7 +37,7 @@ function LoginPage() {
 
   const loginClickHandle = (e) => {
     e.preventDefault();
-    dispatch(LogIn("login", email, password, redirectInHome));
+    dispatch(LogIn(email, password, redirectInHome));
   };
 
   return (

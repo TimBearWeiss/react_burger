@@ -25,6 +25,7 @@ import {
   wsConnectionClosed,
 } from "../../services/actions/wsAction";
 import { WS_URL } from "../../utils/api";
+import { fillUserData } from "../../services/actions/user";
 
 function App() {
   const accessToken = useSelector((store) => store.user.accessToken);
@@ -32,6 +33,10 @@ function App() {
   useEffect(() => {
     dispatch(getAllIngredients("ingredients"));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fillUserData());
+  }, []);
 
   // gtql; bp ghjabkz
   const allOrders = useSelector((store) => store.orderFeed.allOrders);
@@ -101,7 +106,11 @@ function App() {
             />
             <Route
               path="/profile/orders/:id"
-              element={<CurrentOrderPageInProfile accessToken={accessToken} />}
+              element={
+                <ProtectedRouteElement forAuthUser={false}>
+                  <CurrentOrderPageInProfile accessToken={accessToken} />
+                </ProtectedRouteElement>
+              }
             />
 
             <Route path="/feed" element={<OrderListPage link={"feed"} />} />

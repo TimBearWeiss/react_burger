@@ -18,12 +18,13 @@ import {
   wsConnectionClosed,
 } from "../services/actions/wsAction";
 import { WS_URL } from "../utils/api";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function ProfilePage() {
   const { email, name } = useSelector((store) => store.user.user);
-  const accessToken = useSelector((store) => store.user.accessToken);
+  const accessToken = getCookie("accessToken");
   const location = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isChanged, setIsChanged] = useState(false);
   const [nameValue, setName] = useState(name);
@@ -78,7 +79,7 @@ function ProfilePage() {
   };
 
   const logOutClick = () => {
-    dispatch(logOut("logout", getCookie("token")));
+    dispatch(logOut());
     deleteCookie("token");
   };
 

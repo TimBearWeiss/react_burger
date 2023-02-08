@@ -10,6 +10,7 @@ import {
   wsConnectionStart,
   wsConnectionClosed,
 } from "../../services/actions/wsAction";
+import { getCookie } from "../../utils/data";
 
 function InfoOrderStory({ currentOrder }) {
   const dispatch = useDispatch();
@@ -19,12 +20,8 @@ function InfoOrderStory({ currentOrder }) {
     (store) => store.ingredients.allIngredients
   );
 
-  const accessToken = useSelector((store) => store.user.accessToken);
-
   useEffect(() => {
-    dispatch(
-      wsConnectionStart(`${WS_URL}?token=${accessToken.split("Bearer ")[1]}`)
-    );
+    dispatch(wsConnectionStart(`${WS_URL}?token=${getCookie("accessToken")}`));
     return () => dispatch(wsConnectionClosed());
   }, [dispatch]);
 

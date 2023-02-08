@@ -1,5 +1,5 @@
 import {
-  getNewUser,
+  postNewUserInfo,
   logIn,
   getUserData,
   userLogOut,
@@ -8,7 +8,7 @@ import {
   updateUserData,
 } from "../../utils/userApi";
 
-import { setCookie } from "../../utils/data";
+import { deleteCookie, setCookie } from "../../utils/data";
 export const REGISTER_USER_REQUEST = "REGISTER_USER_REQUEST";
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
 export const REGISTER_USER_FAILED = "REGISTER_USER_FAILED";
@@ -37,10 +37,10 @@ export const CHANGE_USER_DATA_REQUEST = "CHANGE_USER_DATA_REQUEST";
 export const CHANGE_USER_DATA_SUCCESS = "CHANGE_USER_DATA_SUCCESS";
 export const CHANGE_USER_DATA_FAILED = "CHANGE_USER_DATA_FAILED";
 
-export function registerUser(url, formData, redirect) {
+export function registerUser(formData, redirect) {
   return function (dispatch) {
     dispatch({ type: REGISTER_USER_REQUEST });
-    getNewUser(url, formData)
+    postNewUserInfo(formData)
       .then((res) => {
         if (res && res.success) {
           dispatch({
@@ -61,17 +61,18 @@ export function registerUser(url, formData, redirect) {
 }
 
 // вход в систему
-export function LogIn(url, email, password, redirect) {
+export function LogIn(email, password, redirect) {
   return function (dispatch) {
     dispatch({ type: LOG_IN_REQUEST });
-    logIn(url, email, password)
+    logIn(email, password)
       .then((res) => {
         if (res && res.success) {
           dispatch({
             type: LOG_IN_SUCCESS,
             userData: res,
           });
-          setCookie("token", res.refreshToken);
+          setCookie("accessToken", res.accessToken.split("Bearer ")[1]); //новые куки
+          setCookie("refreshToken", res.refreshToken); //новые куки
         } else {
           dispatch({ type: LOG_IN_FAILED });
         }
@@ -84,39 +85,37 @@ export function LogIn(url, email, password, redirect) {
   };
 }
 
-export function fillUserData(url, token) {
+//запрос данных пользователя по access токену
+export function fillUserData() {
   return function (dispatch) {
     dispatch({ type: DATA_USER_REQUEST });
-    getUserData(url, token)
+    getUserData()
       .then((res) => {
         if (res && res.success) {
           dispatch({
             type: DATA_USER_SUCCESS,
             userData: res,
           });
-        } else {
-          dispatch({ type: DATA_USER_FAILED });
         }
       })
       .catch((err) => {
         console.log("Произошла ошибка :", err);
         dispatch({ type: DATA_USER_FAILED });
+        dispatch(updateToken());
       });
   };
 }
 
 // выход из системы
-
-export function logOut(url, token) {
+export function logOut() {
   return function (dispatch) {
     dispatch({ type: LOGOUT_REQUEST });
-    userLogOut(url, token)
+    userLogOut()
       .then((res) => {
         if (res && res.success) {
+          deleteCookie("accessToken");
+          deleteCookie("refreshToken");
           dispatch({ type: LOGOUT_SUCCESS });
-          console.log(res);
-        } else {
-          dispatch({ type: LOGOUT_FAILED });
         }
       })
       .catch((err) => {
@@ -144,21 +143,21 @@ export function passwordChangeStep(email, redirect) {
       });
   };
 }
+
 // обновление токена для запоминания входа
-export function updateToken(url, token) {
+export function updateToken() {
   return function (dispatch) {
     dispatch({ type: UPDATE_TOKEN_REQUEST });
-    getNewAuthToken(url, token)
+    getNewAuthToken()
       .then((res) => {
         if (res && res.success) {
           dispatch({
             type: UPDATE_TOKEN_SUCCESS,
             authToken: res.accessToken,
           });
-          dispatch(fillUserData("user", res.accessToken));
-          setCookie("token", res.refreshToken);
-        } else {
-          dispatch({ type: UPDATE_TOKEN_FAILED });
+          setCookie("accessToken", res.accessToken.split("Bearer ")[1]);
+          setCookie("refreshToken", res.refreshToken);
+          dispatch(fillUserData("user"));
         }
       })
       .catch((err) => {
@@ -167,15 +166,15 @@ export function updateToken(url, token) {
       });
   };
 }
-
-export function changeUserData(url, token, form) {
+//обновление данных пользователя через профиль (с токеном)
+export function changeUserData(form) {
   return function (dispatch) {
     dispatch({ type: CHANGE_USER_DATA_REQUEST });
-    updateUserData(url, token, form)
+    updateUserData(form)
       .then((res) => {
         if (res && res.success) {
           dispatch({ type: CHANGE_USER_DATA_SUCCESS, userData: res.user });
-          dispatch(fillUserData("user", token));
+          // dispatch(fillUserData("user"));
         } else {
           dispatch({ type: CHANGE_USER_DATA_FAILED });
         }
