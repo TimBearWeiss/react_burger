@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { updateToken } from "../services/actions/user";
 import { getCookie } from "../utils/data";
+import styles from "../components/CurrentOrderInModal/CurrentOrderInModal.module.css";
 
 // я не понимаю, почему не могу получить accessToken, для того, чтобы отрисовать пейдж.
 
@@ -15,14 +16,18 @@ function CurrentOrderPageInProfile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+  const isUserAuth = useSelector((store) => store.user.userIsAuth);
 
-  let accessToken = useSelector((store) => store.user.accessToken);
+  useEffect(() => {
+    const token = getCookie("token");
+    if (token && !isUserAuth) {
+      dispatch(updateToken("token", getCookie("token")));
+    } else {
+      console.log("Токен не найден");
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   dispatch(updateToken("token", getCookie("token")));
-  // }, [dispatch]);
-
-  // console.log(accessToken);
+  const accessToken = useSelector((store) => store.user.accessToken);
 
   useEffect(() => {
     dispatch(
@@ -31,9 +36,28 @@ function CurrentOrderPageInProfile() {
     return () => dispatch(wsConnectionClosed());
   }, [dispatch]);
 
+  const allOrders = useSelector((store) => store.orderFeed.allOrders.reverse());
+  const currentOrder = allOrders.find((item) => item._id === id);
+
+  console.log(currentOrder);
   return (
     <>
-      <p>PageofProfileIngredient</p>
+      {currentOrder === undefined ? (
+        <p>Загрузка</p>
+      ) : (
+        <div style={{ maxWidth: "640px", marginTop: "120px" }}>
+          {" "}
+          <p
+            style={{ textAlign: "center" }}
+            className={`text text_type_digits-default mb-10`}
+          >
+            #{currentOrder.number}
+          </p>
+          <h2 className={`${styles.orderName} text text_type_main-medium mb-6`}>
+            {currentOrder.name}
+          </h2>
+        </div>
+      )}
     </>
   );
 }

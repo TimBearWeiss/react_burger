@@ -12,7 +12,7 @@ import { getCookie, deleteCookie } from "../utils/data";
 import { logOut } from "../services/actions/user";
 import { changeUserData } from "../services/actions/user";
 import OrderListElement from "../components/OrderListElement/OrderListElement";
-
+import StoryList from "../components/StoryList/StoryList";
 import {
   wsConnectionStart,
   wsConnectionClosed,
@@ -32,12 +32,12 @@ function ProfilePage() {
 
   const allOrders = useSelector((store) => store.orderFeed.allOrders.reverse());
 
-  useEffect(() => {
-    dispatch(
-      wsConnectionStart(`${WS_URL}?token=${accessToken.split("Bearer ")[1]}`)
-    );
-    return () => dispatch(wsConnectionClosed());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(
+  //     wsConnectionStart(`${WS_URL}?token=${accessToken.split("Bearer ")[1]}`)
+  //   );
+  //   return () => dispatch(wsConnectionClosed());
+  // }, [dispatch]);
 
   // сравнение
   const defaultData = [email, name, ""];
@@ -198,21 +198,7 @@ function ProfilePage() {
               </form>
             }
           />
-          <Route
-            path="orders"
-            element={
-              <div className={styles.scrollProfile}>
-                {allOrders.map((el) => (
-                  <OrderListElement
-                    link={"profile/orders"}
-                    status={el.status}
-                    item={el}
-                    key={el._id}
-                  />
-                ))}
-              </div>
-            }
-          />
+          <Route path="orders" element={<StoryList allOrders={allOrders} />} />
         </Routes>
       </div>
     </div>
