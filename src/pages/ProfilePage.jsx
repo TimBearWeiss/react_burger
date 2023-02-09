@@ -63,7 +63,7 @@ function ProfilePage() {
   const saveChanges = (e) => {
     e.preventDefault();
     dispatch(
-      changeUserData("user", accessToken, {
+      changeUserData({
         name: nameValue,
         email: emailValue,
         password: passwordValue,
@@ -166,6 +166,7 @@ function ProfilePage() {
                 {isChanged && (
                   <div
                     style={{
+                      maxWidth: "480px",
                       display: "flex",
                       justifyContent: "space-around",
                     }}

@@ -13,11 +13,14 @@ function StoryList({ allOrders }) {
   const dispatch = useDispatch();
 
   const accessToken = getCookie("accessToken");
+
   console.log(accessToken);
+
   useEffect(() => {
     dispatch(wsConnectionStart(`${WS_URL}?token=${accessToken}`));
     return () => dispatch(wsConnectionClosed());
   }, [dispatch]);
+
   return (
     <div className={styles.scrollProfile}>
       {allOrders.map((el) => (
