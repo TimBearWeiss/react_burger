@@ -15,9 +15,8 @@ import styles from "../components/CurrentOrderInModal/CurrentOrderInModal.module
 
 function CurrentOrderPageInProfile({}) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const { id } = useParams();
-  const isUserAuth = useSelector((store) => store.user.userIsAuth);
 
   useEffect(() => {
     dispatch(wsConnectionStart(`${WS_URL}?token=${getCookie("accessToken")}`));

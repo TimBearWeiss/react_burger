@@ -20,12 +20,12 @@ import emptyPlace from "../../images/emptyPlace.svg";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import CardConstructor from "../../components/CardConstructor/CardConstructor";
+import { getCookie } from "../../utils/data";
 
 const BurgerConstructor = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const auth = useSelector((store) => store.user.userIsAuth);
-  const accessToken = useSelector((store) => store.user.accessToken);
 
   // ингредиенты конструтора
   const midIngredients = useSelector(
@@ -64,7 +64,7 @@ const BurgerConstructor = () => {
       navigate("/login");
       return;
     }
-    dispatch(getOrder("orders", IdIngredients, accessToken));
+    dispatch(getOrder("orders", IdIngredients, getCookie("accessToken")));
   }
 
   const closeOrderModal = useCallback(() => {

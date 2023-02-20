@@ -156,6 +156,7 @@ function ProfilePage() {
                   name={"password"}
                   extraClass="mb-6"
                   icon="EditIcon"
+                  autoComplete="on"
                   required
                 />
                 {isChanged && (

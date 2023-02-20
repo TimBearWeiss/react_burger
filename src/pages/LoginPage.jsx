@@ -56,6 +56,7 @@ function LoginPage() {
           value={password}
           name={"password"}
           extraClass="mb-6"
+          autoComplete="on"
           required
         />
         <Button

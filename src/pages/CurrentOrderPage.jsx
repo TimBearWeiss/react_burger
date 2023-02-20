@@ -5,7 +5,7 @@ import {
   FormattedDate,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useState, useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { WS_URL } from "../utils/api";
 import {
   wsConnectionStart,
@@ -13,7 +13,6 @@ import {
 } from "../services/actions/wsAction";
 
 function CurrentOrderPage() {
-  const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
   const allIngredients = useSelector(
@@ -58,8 +57,6 @@ function CurrentOrderPage() {
     return arr.filter((item) => item == index).length;
   }
 
-  console.log(currentOrder);
-  console.log(allIngredients);
   return (
     <>
       {currentOrder === undefined ? (
