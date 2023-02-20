@@ -10,19 +10,25 @@ const defaultState = {
   orderNumber: null,
   orderNumberRequest: false,
   orderNumberFailed: false,
+  orderStatus: "Оформить заказ",
 };
 
 export const orderReducer = (state = defaultState, action) => {
   switch (action.type) {
     // номер заказа
     case GET_ORDER_REQUEST:
-      return { ...state, orderNumberRequest: true };
+      return {
+        ...state,
+        orderNumberRequest: true,
+        orderStatus: "Подождите...",
+      };
     case GET_ORDER_SUCCESS:
       return {
         ...state,
         orderNumber: action.number,
         orderNumberRequest: false,
         orderNumberFailed: false,
+        orderStatus: "Оформить заказ",
       };
     case GET_ORDER_FAILED:
       return { ...state, orderNumberRequest: false, orderNumberFailed: true };

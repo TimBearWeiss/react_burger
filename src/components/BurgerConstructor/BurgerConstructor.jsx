@@ -27,6 +27,8 @@ const BurgerConstructor = () => {
   const navigate = useNavigate();
   const auth = useSelector((store) => store.user.userIsAuth);
 
+  const orderStatus = useSelector((store) => store.order.orderStatus);
+
   // ингредиенты конструтора
   const midIngredients = useSelector(
     (store) => store.burgerConstructor.constructorIngredients
@@ -169,7 +171,7 @@ const BurgerConstructor = () => {
             size="large"
             disabled={buttonState}
           >
-            Оформить заказ
+            {orderStatus}
           </Button>
         </div>
       </div>
