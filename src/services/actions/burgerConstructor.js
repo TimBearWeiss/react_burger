@@ -22,3 +22,7 @@ export const moveCard = (item) => ({
   type: MOVE_CARD,
   item,
 });
+
+// опустошение конструктора после оформления заказа
+
+export const DELETE_ALL_INGREDIENT = "DELETE_ALL_INGREDIENT";

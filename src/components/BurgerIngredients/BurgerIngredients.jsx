@@ -1,9 +1,8 @@
-import React from "react";
 import IngredientStyle from "./BurgerIngredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredient from "../Ingredient/Ingredient";
 import { useSelector } from "react-redux";
-import { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useInView } from "react-intersection-observer";
 import Ingredients from "../Ingredient/Ingredient";
 

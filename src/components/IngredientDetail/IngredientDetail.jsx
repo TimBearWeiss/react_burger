@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 const IngredientDetails = ({ allIngredients }) => {
   const { id } = useParams();
-  console.log("inDetails", id, allIngredients);
   const ingredient = allIngredients.find((item) => item._id === id);
 
   return (

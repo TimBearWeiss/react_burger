@@ -4,13 +4,13 @@ import {
   wsConnectionClosed,
 } from "../../services/actions/wsAction";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "../CurrentOrderInModal/CurrentOrderInModal.module.css";
 import {
   FormattedDate,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useState } from "react";
+
 function InfoOrder({ currentOrder }) {
   const dispatch = useDispatch();
   useEffect(() => {

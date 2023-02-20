@@ -174,7 +174,6 @@ export function changeUserData(form) {
       .then((res) => {
         if (res && res.success) {
           dispatch({ type: CHANGE_USER_DATA_SUCCESS, userData: res.user });
-          // dispatch(fillUserData("user"));
         } else {
           dispatch({ type: CHANGE_USER_DATA_FAILED });
         }

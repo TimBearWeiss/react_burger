@@ -1,11 +1,11 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import styles from "../components/CurrentOrderInModal/CurrentOrderInModal.module.css";
 import {
   FormattedDate,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useEffect } from "react";
 import { WS_URL } from "../utils/api";
 import {
   wsConnectionStart,

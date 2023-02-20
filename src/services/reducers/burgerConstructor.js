@@ -4,6 +4,7 @@ import {
   ADD_BUN_IN_CONSTRUCTOR,
   DELETE_INGREDIENT,
   MOVE_CARD,
+  DELETE_ALL_INGREDIENT,
 } from "../actions/burgerConstructor";
 
 const defaultState = {
@@ -52,6 +53,13 @@ export const constructorReducer = (state = defaultState, action) => {
             ],
           ],
         }),
+      };
+
+    case DELETE_ALL_INGREDIENT:
+      return {
+        ...state,
+        constructorIngredients: [],
+        constructorBuns: [],
       };
 
     default:

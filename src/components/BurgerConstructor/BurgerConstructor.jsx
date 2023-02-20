@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useCallback, useMemo, useEffect } from "react";
+import { useCallback, useMemo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDrop } from "react-dnd";
+import { useNavigate } from "react-router-dom";
 import ConstructorStyle from "./BurgerConstructor.module.css";
 import {
   ConstructorElement,
@@ -10,24 +10,24 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../Modal/Modal";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
-import { getOrder } from "../../services/actions/order";
 import {
   addIngredientInConstructor,
   addBunsInConstructor,
 } from "../../services/actions/burgerConstructor";
-import { CLOSE_ORDER_MODAL } from "../../services/actions/order";
+import { CLOSE_ORDER_MODAL, getOrder } from "../../services/actions/order";
+import { DELETE_ALL_INGREDIENT } from "../../services/actions/burgerConstructor";
 import emptyPlace from "../../images/emptyPlace.svg";
 import { v4 as uuidv4 } from "uuid";
-import { useNavigate } from "react-router-dom";
 import CardConstructor from "../../components/CardConstructor/CardConstructor";
 import { getCookie } from "../../utils/data";
 
 const BurgerConstructor = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const auth = useSelector((store) => store.user.userIsAuth);
 
+  const auth = useSelector((store) => store.user.userIsAuth);
   const orderStatus = useSelector((store) => store.order.orderStatus);
+  const numberOfOrder = useSelector((store) => store.order.orderNumber);
 
   // ингредиенты конструтора
   const midIngredients = useSelector(
@@ -67,13 +67,12 @@ const BurgerConstructor = () => {
       return;
     }
     dispatch(getOrder("orders", IdIngredients, getCookie("accessToken")));
+    dispatch({ type: DELETE_ALL_INGREDIENT });
   }
 
   const closeOrderModal = useCallback(() => {
     dispatch({ type: CLOSE_ORDER_MODAL });
   }, [dispatch]);
-
-  const numberOfOrder = useSelector((store) => store.order.orderNumber);
 
   // функция перетаскивания на прием
 
@@ -174,6 +173,15 @@ const BurgerConstructor = () => {
             {orderStatus}
           </Button>
         </div>
+        {orderStatus === "Подождите..." ? (
+          <p
+            className={
+              ConstructorStyle.annotation + " text text_type_main-medium"
+            }
+          >
+            Идет оформление заказа, не покидайте страницу
+          </p>
+        ) : null}
       </div>
     </section>
   );

@@ -3,7 +3,6 @@ import {
   Counter,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-
 import { useDispatch, useSelector } from "react-redux";
 import { GET_CURRENT_INGREDIENT } from "../../services/actions/ingredientDetailsModal";
 import { useCallback, useMemo } from "react";

@@ -1,6 +1,6 @@
 import { NavLink, Routes, Route } from "react-router-dom";
-import styles from "./Pages.module.css";
 import { useState, useEffect } from "react";
+import styles from "./Pages.module.css";
 import {
   EmailInput,
   PasswordInput,
@@ -8,18 +8,13 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
-import { getCookie, deleteCookie } from "../utils/data";
-import { logOut } from "../services/actions/user";
-import { changeUserData } from "../services/actions/user";
+import { deleteCookie } from "../utils/data";
+import { logOut, changeUserData } from "../services/actions/user";
 import StoryList from "../components/StoryList/StoryList";
-
-import { useLocation, useNavigate } from "react-router-dom";
 
 function ProfilePage() {
   const { email, name } = useSelector((store) => store.user.user);
-  const accessToken = getCookie("accessToken");
-  const location = useLocation();
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const [isChanged, setIsChanged] = useState(false);
   const [nameValue, setName] = useState(name);

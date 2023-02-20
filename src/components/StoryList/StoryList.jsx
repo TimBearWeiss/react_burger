@@ -5,17 +5,15 @@ import {
   wsConnectionClosed,
 } from "../../services/actions/wsAction";
 import { WS_URL } from "../../utils/api";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { getCookie } from "../../utils/data";
 
 function StoryList({ allOrders }) {
   const dispatch = useDispatch();
 
-  const accessToken = getCookie("accessToken");
-
   useEffect(() => {
-    dispatch(wsConnectionStart(`${WS_URL}?token=${accessToken}`));
+    dispatch(wsConnectionStart(`${WS_URL}?token=${getCookie("accessToken")}`));
     return () => dispatch(wsConnectionClosed());
   }, [dispatch]);
 

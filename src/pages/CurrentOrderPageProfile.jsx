@@ -1,17 +1,17 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { WS_URL } from "../utils/api";
 import {
   FormattedDate,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import styles from "../components/CurrentOrderInModal/CurrentOrderInModal.module.css";
 import {
   wsConnectionStart,
   wsConnectionClosed,
 } from "../services/actions/wsAction";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { getCookie } from "../utils/data";
-import styles from "../components/CurrentOrderInModal/CurrentOrderInModal.module.css";
 
 function CurrentOrderPageInProfile({}) {
   const dispatch = useDispatch();

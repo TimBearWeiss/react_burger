@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import appStyle from "./App.module.css";
 import AppHeader from "../AppHeader/AppHeader.jsx";
 import HomePage from "../../pages/HomePage";
@@ -13,9 +16,6 @@ import NotFoundPage from "../../pages/NotFoundPage";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetail/IngredientDetail";
 import { getAllIngredients } from "../../services/actions/ingredients";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import CurrentOrderPage from "../../pages/CurrentOrderPage";
 import CurrentOrderInModal from "../CurrentOrderInModal/CurrentOrderInModal";
 import CurrentOrderInModalProfile from "../CurrentOrderInModalProfile/CurrentOrderInModalProfile";
