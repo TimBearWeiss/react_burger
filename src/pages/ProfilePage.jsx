@@ -11,13 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCookie, deleteCookie } from "../utils/data";
 import { logOut } from "../services/actions/user";
 import { changeUserData } from "../services/actions/user";
-import OrderListElement from "../components/OrderListElement/OrderListElement";
 import StoryList from "../components/StoryList/StoryList";
-import {
-  wsConnectionStart,
-  wsConnectionClosed,
-} from "../services/actions/wsAction";
-import { WS_URL } from "../utils/api";
+
 import { useLocation, useNavigate } from "react-router-dom";
 
 function ProfilePage() {

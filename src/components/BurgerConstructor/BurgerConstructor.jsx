@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useCallback, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDrop } from "react-dnd";
@@ -15,12 +15,10 @@ import {
   addIngredientInConstructor,
   addBunsInConstructor,
 } from "../../services/actions/burgerConstructor";
-
 import { CLOSE_ORDER_MODAL } from "../../services/actions/order";
 import emptyPlace from "../../images/emptyPlace.svg";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
-
 import CardConstructor from "../../components/CardConstructor/CardConstructor";
 
 const BurgerConstructor = () => {

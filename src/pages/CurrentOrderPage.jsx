@@ -11,7 +11,6 @@ import {
   wsConnectionStart,
   wsConnectionClosed,
 } from "../services/actions/wsAction";
-import { getAllIngredients } from "../services/actions/ingredients";
 
 function CurrentOrderPage() {
   const navigate = useNavigate();

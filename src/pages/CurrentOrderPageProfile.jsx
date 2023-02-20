@@ -10,7 +10,6 @@ import {
 } from "../services/actions/wsAction";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { updateToken } from "../services/actions/user";
 import { getCookie } from "../utils/data";
 import styles from "../components/CurrentOrderInModal/CurrentOrderInModal.module.css";
 

@@ -1,6 +1,6 @@
 import { checkResponse } from "./data";
 import { BASE_URL } from "./api";
-import { getCookie, setCookie } from "./data";
+import { getCookie } from "./data";
 const BASE_USER_URL = "https://norma.nomoreparties.space/api";
 
 //регистрация пользователя

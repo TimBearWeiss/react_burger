@@ -20,11 +20,6 @@ import CurrentOrderPage from "../../pages/CurrentOrderPage";
 import CurrentOrderInModal from "../CurrentOrderInModal/CurrentOrderInModal";
 import CurrentOrderInModalProfile from "../CurrentOrderInModalProfile/CurrentOrderInModalProfile";
 import CurrentOrderPageInProfile from "../../pages/CurrentOrderPageProfile";
-import {
-  wsConnectionStart,
-  wsConnectionClosed,
-} from "../../services/actions/wsAction";
-import { WS_URL } from "../../utils/api";
 import { fillUserData } from "../../services/actions/user";
 
 function App() {

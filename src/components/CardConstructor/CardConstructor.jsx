@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useDrop } from "react-dnd";
 import CardConstructorStyle from "./CardConstructor.module.css";

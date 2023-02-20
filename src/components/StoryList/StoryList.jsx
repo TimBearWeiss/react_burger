@@ -14,8 +14,6 @@ function StoryList({ allOrders }) {
 
   const accessToken = getCookie("accessToken");
 
-  console.log(accessToken);
-
   useEffect(() => {
     dispatch(wsConnectionStart(`${WS_URL}?token=${accessToken}`));
     return () => dispatch(wsConnectionClosed());
