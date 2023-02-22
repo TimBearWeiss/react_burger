@@ -1,0 +1,27 @@
+.box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 32px;
+  row-gap: 40px;
+}
+
+.section {
+  max-width: 600px;
+}
+.scroll {
+  height: 700px;
+  overflow-y: scroll;
+  overflow-x: unset;
+}
+
+::-webkit-scrollbar {
+  width: 8px; /* ширина scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #2f2f37; /* цвет дорожки */
+}
+::-webkit-scrollbar-thumb {
+  height: 60%;
+  background-color: #8585ad; /* цвет плашки */
+}

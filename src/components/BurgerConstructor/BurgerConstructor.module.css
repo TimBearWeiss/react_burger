@@ -1,0 +1,67 @@
+.section {
+  max-width: 600px;
+  margin-left: 56px;
+  margin-top: 105px;
+  min-width: 600px;
+}
+
+.alignment {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scroll {
+  max-height: 464px;
+  overflow-y: scroll;
+  overflow-x: unset;
+  margin-top: 4px;
+  margin-bottom: 0px;
+}
+
+::-webkit-scrollbar {
+  width: 8px; /* ширина scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #2f2f37; /* цвет дорожки */
+}
+::-webkit-scrollbar-thumb {
+  height: 60%;
+  background-color: #8585ad; /* цвет плашки */
+}
+
+.relative {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.relative:last-child {
+  margin-bottom: 2px;
+}
+
+.base {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 8px;
+}
+
+.down {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  margin-right: 41px;
+}
+
+.annotation {
+  text-align: center;
+  margin-top: 40px;
+}

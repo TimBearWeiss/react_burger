@@ -1,0 +1,6 @@
+.scrollProfile {
+  height: 700px;
+  overflow-y: scroll;
+  overflow-x: unset;
+  display: block;
+}

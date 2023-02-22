@@ -1,0 +1,77 @@
+.doneOrder {
+  color: #00cccc;
+}
+
+.structureCell {
+  padding: 40px;
+  width: 640px;
+  text-align: start;
+}
+
+.orderScroll {
+  max-height: 320px;
+  min-height: 200px;
+  display: grid;
+  gap: 16px;
+  align-content: flex-start;
+  overflow-y: scroll;
+  padding: 0 24px 0 0;
+}
+
+.orderScroll::-webkit-scrollbar {
+  width: 8px;
+  /* ширина для вертикального скролла */
+  background-color: #2f2f37;
+}
+
+/* ползунок скроллбара */
+.orderScroll::-webkit-scrollbar-thumb {
+  background-color: #8585ad;
+}
+
+.orderScroll::-webkit-scrollbar-thumb:hover {
+  background-color: #6d6dac;
+}
+
+.footerModal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.totalPrice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ingredientElement {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.ingredient {
+  position: inherit;
+  top: 0px;
+  width: 64px;
+  height: 64px;
+  box-sizing: border-box;
+  background: linear-gradient(#131316, #131316) padding-box,
+    linear-gradient(to right, rgb(164, 75, 208), rgb(40, 40, 167)) border-box;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  object-fit: cover;
+}
