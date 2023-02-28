@@ -9,7 +9,7 @@ const getIngredients = (url) => {
 };
 
 // получение номера заказа
-const getNumberOfOrder = (url, idIngredients, accessToken) => {
+const getNumberOfOrder = (url, idIngredients) => {
   return fetch(`${BASE_URL}/${url}`, {
     method: "POST",
     headers: {
