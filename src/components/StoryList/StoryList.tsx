@@ -7,7 +7,7 @@ import {
 import { WS_URL } from "../../utils/api";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getCookie } from "../../utils/data";
+import { getCookie } from "../../utils/cookie";
 import { FC } from "react";
 import { TOrder } from "../../types/types";
 

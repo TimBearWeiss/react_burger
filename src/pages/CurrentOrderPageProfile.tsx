@@ -11,7 +11,7 @@ import {
   wsConnectionStart,
   wsConnectionClosed,
 } from "../services/actions/wsAction";
-import { getCookie } from "../utils/data";
+import { getCookie } from "../utils/cookie";
 import { useTypedSelector } from "../services/rootReducer";
 import { TIngredient, TOrder } from "../types/types";
 

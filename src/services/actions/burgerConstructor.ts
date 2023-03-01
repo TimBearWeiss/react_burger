@@ -1,4 +1,5 @@
-import { TIngredient } from "../../types/types";
+import { TIngredient, TItemCard } from "../../types/types";
+
 export const ADD_INGREDIENT_IN_CONSTRUCTOR: "ADD_INGREDIENT_IN_CONSTRUCTOR" =
   "ADD_INGREDIENT_IN_CONSTRUCTOR";
 export const ADD_BUN_IN_CONSTRUCTOR: "ADD_BUN_IN_CONSTRUCTOR" =
@@ -24,11 +25,6 @@ export type TaddBunsInConstructor = {
 export type TdeleteIngredient = {
   readonly type: typeof DELETE_INGREDIENT;
   readonly item: number;
-};
-
-type TItemCard = {
-  dragIndex: number;
-  hoverIndex: number;
 };
 
 export type TMoveCard = {

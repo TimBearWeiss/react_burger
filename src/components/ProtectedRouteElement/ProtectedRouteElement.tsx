@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { getCookie } from "../../utils/data";
+import { getCookie } from "../../utils/cookie";
 import { FC, ReactComponentElement, ReactElement } from "react";
 import { useEffect, ReactNode } from "react";
 import { useTypedSelector } from "../../services/rootReducer";

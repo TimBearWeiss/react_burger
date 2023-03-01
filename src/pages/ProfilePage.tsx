@@ -8,7 +8,7 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCookie } from "../utils/data";
+import { deleteCookie } from "../utils/cookie";
 import { logOut, changeUserData } from "../services/actions/user";
 import StoryList from "../components/StoryList/StoryList";
 import { useTypedSelector } from "../services/rootReducer";

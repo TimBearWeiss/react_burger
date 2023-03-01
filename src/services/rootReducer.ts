@@ -9,7 +9,7 @@ import thunk from "redux-thunk";
 import { wsReducer } from "./reducers/wsReducer";
 import { socketMiddleware } from "./middleware/wsMiddleware";
 import { useSelector } from "react-redux";
-import { composeEnhancers } from "../utils/data";
+
 import {
   WS_CONNECTION_START,
   WS_CONNECTION_SUCCESS,
@@ -47,6 +47,11 @@ const wsActions: TWsActionsMiddleware = {
   onError: WS_CONNECTION_ERROR,
   onMessage: WS_GET_MESSAGE,
 };
+
+export const composeEnhancers =
+  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose;
 
 const enhancer = composeEnhancers(
   applyMiddleware(thunk, socketMiddleware(wsActions))

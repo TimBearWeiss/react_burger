@@ -10,7 +10,7 @@ import {
   wsConnectionStart,
   wsConnectionClosed,
 } from "../../services/actions/wsAction";
-import { getCookie } from "../../utils/data";
+import { getCookie } from "../../utils/cookie";
 import { FC } from "react";
 import { TIngredient, TOrder } from "../../types/types";
 import { useTypedSelector } from "../../services/rootReducer";

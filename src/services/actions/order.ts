@@ -1,4 +1,4 @@
-import { getNumberOfOrder } from "../../utils/api.js";
+import { getNumberOfOrder } from "../../utils/api";
 import { AppThunk } from "../../types/types.js";
 import { AppDispatch } from "../../types/types.js";
 
@@ -28,7 +28,7 @@ type TCloseOrderModalAction = {
 
 // объединенные типы акшинов
 
-export type TorderAction =
+export type TOrderAction =
   | TGetOrderRequest
   | TGetOrderFailed
   | TGetOrderSuccess

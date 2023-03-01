@@ -7,8 +7,9 @@ import {
   getNewAuthToken,
   updateUserData,
 } from "../../utils/userApi";
-import { deleteCookie, setCookie } from "../../utils/data";
+import { deleteCookie, setCookie } from "../../utils/cookie";
 import { AppDispatch } from "../../types/types";
+import { TUserData, TFormData } from "../../types/types";
 
 export const REGISTER_USER_REQUEST: "REGISTER_USER_REQUEST" =
   "REGISTER_USER_REQUEST";
@@ -51,35 +52,11 @@ export const CHANGE_USER_DATA_FAILED: "CHANGE_USER_DATA_FAILED" =
 
 // типы
 
-type TupdateToken = {
-  success: boolean;
-  accessToken: string;
-  refreshToken: string;
-};
-
-type TformData = {
-  name: string;
-  email: string;
-  password: string;
-};
-
-type TuserData = {
-  success: boolean;
-  user: {
-    email: string;
-    name: string;
-  };
-  accessToken: string;
-  refreshToken: string;
-};
-
-type changeData = {
-  success: boolean;
-  user: {
-    email: string;
-    name: string;
-  };
-};
+// export type TFormData = {
+//   name: string;
+//   email: string;
+//   password: string;
+// };
 
 type TregisterUserRequest = {
   readonly type: typeof REGISTER_USER_REQUEST;
@@ -91,7 +68,7 @@ type TregisterUserFailed = {
 
 type TregisterUserSuccess = {
   readonly type: typeof REGISTER_USER_SUCCESS;
-  readonly userData: TuserData;
+  readonly userData: TUserData;
 };
 
 type TlogInRequest = {
@@ -104,7 +81,7 @@ type TlogInFailed = {
 
 type TlogInSuccess = {
   readonly type: typeof LOG_IN_SUCCESS;
-  readonly userData: TuserData;
+  readonly userData: TUserData;
 };
 
 //////
@@ -119,7 +96,7 @@ type TfailedUserData = {
 
 type TsucessUserData = {
   readonly type: typeof DATA_USER_SUCCESS;
-  readonly userData: TuserData;
+  readonly userData: TUserData;
 };
 
 type TLogOutRequest = {
@@ -209,7 +186,7 @@ const registerUserFailed = (): TregisterUserFailed => {
   };
 };
 
-const registerUserSuccess = (res: TuserData): TregisterUserSuccess => {
+const registerUserSuccess = (res: TUserData): TregisterUserSuccess => {
   return {
     type: REGISTER_USER_SUCCESS,
     userData: res,
@@ -228,7 +205,7 @@ const logInFailed = (): TlogInFailed => {
   };
 };
 
-const logInSuccess = (res: TuserData): TlogInSuccess => {
+const logInSuccess = (res: TUserData): TlogInSuccess => {
   return {
     type: LOG_IN_SUCCESS,
     userData: res,
@@ -248,7 +225,7 @@ const failedUserData = (): TfailedUserData => {
   };
 };
 
-const sucessUserData = (res: TuserData): TsucessUserData => {
+const sucessUserData = (res: TUserData): TsucessUserData => {
   return {
     type: DATA_USER_SUCCESS,
     userData: res,
@@ -332,7 +309,7 @@ const changeUserDataFailed = (): TchangeUserDataFailed => {
 };
 
 // котлеты
-export const registerUser = (formData: TformData, redirect: () => void) => {
+export const registerUser = (formData: TFormData, redirect: () => void) => {
   return function (dispatch: AppDispatch) {
     dispatch(registerUserRequest());
     postNewUserInfo(formData)
@@ -453,7 +430,7 @@ export function passwordChangeStep(email: string, redirect: () => void) {
 }
 
 //обновление данных пользователя через профиль (с токеном)
-export function changeUserData(form: TformData) {
+export function changeUserData(form: TFormData) {
   return function (dispatch: AppDispatch) {
     dispatch(changeUserDataRequest());
     updateUserData(form)

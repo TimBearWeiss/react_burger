@@ -5,13 +5,7 @@ import { Action, ActionCreator } from "redux";
 import { TburgerConstructor } from "../services/actions/burgerConstructor";
 import { TwsAction } from "../services/actions/wsAction";
 import { TgetCurrentIngredient } from "../services/actions/ingredientDetailsModal";
-import { TorderAction } from "../services/actions/order";
-
-import {
-  TypedUseSelectorHook,
-  useDispatch as dispatchHook,
-  useSelector as selectorHook,
-} from "react-redux";
+import { TOrderAction } from "../services/actions/order";
 import { TingredientsAction } from "../services/actions/ingredients";
 
 // типы
@@ -40,8 +34,28 @@ export type TOrder = {
   number: number;
   status: string;
   _id: string;
-
   updatedAt: string;
+};
+
+export type TUserData = {
+  success: boolean;
+  user: {
+    email: string;
+    name: string;
+  };
+  accessToken: string;
+  refreshToken: string;
+};
+
+export type TFormData = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+export type TItemCard = {
+  dragIndex: number;
+  hoverIndex: number;
 };
 
 // редакс типы
@@ -50,7 +64,7 @@ type TApplicationActions =
   | TwsAction
   | TgetCurrentIngredient
   | TingredientsAction
-  | TorderAction;
+  | TOrderAction;
 
 // export type TRootState = ReturnType<typeof rootReducer>;
 

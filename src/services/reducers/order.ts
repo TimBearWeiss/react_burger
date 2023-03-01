@@ -4,7 +4,7 @@ import {
   GET_ORDER_FAILED,
   CLOSE_ORDER_MODAL,
 } from "../actions/order";
-import { TorderAction } from "../actions/order";
+import { TOrderAction } from "../actions/order";
 
 type TOrdersState = {
   orderNumber: number | null;
@@ -21,7 +21,7 @@ const defaultState: TOrdersState = {
   orderStatus: "Оформить заказ",
 };
 
-export const orderReducer = (state = defaultState, action: TorderAction) => {
+export const orderReducer = (state = defaultState, action: TOrderAction) => {
   switch (action.type) {
     // номер заказа
     case GET_ORDER_REQUEST:
