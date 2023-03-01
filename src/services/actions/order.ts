@@ -9,52 +9,52 @@ export const CLOSE_ORDER_MODAL: "CLOSE_ORDER_MODAL" = "CLOSE_ORDER_MODAL";
 
 //типы
 
-type TgetOrderRequest = {
+type TGetOrderRequest = {
   readonly type: typeof GET_ORDER_REQUEST;
 };
 
-type TgetOrderFailed = {
+type TGetOrderFailed = {
   readonly type: typeof GET_ORDER_FAILED;
 };
 
-type TgetOrderSuccess = {
+type TGetOrderSuccess = {
   readonly type: typeof GET_ORDER_SUCCESS;
   readonly number: number;
 };
 
-type TcloseOrderModalAction = {
+type TCloseOrderModalAction = {
   readonly type: typeof CLOSE_ORDER_MODAL;
 };
 
 // объединенные типы акшинов
 
 export type TorderAction =
-  | TgetOrderRequest
-  | TgetOrderFailed
-  | TgetOrderSuccess
-  | TcloseOrderModalAction;
+  | TGetOrderRequest
+  | TGetOrderFailed
+  | TGetOrderSuccess
+  | TCloseOrderModalAction;
 
 // акшин креаторы
-const getOrderRequest = (): TgetOrderRequest => {
+const getOrderRequest = (): TGetOrderRequest => {
   return {
     type: GET_ORDER_REQUEST,
   };
 };
 
-const getOrderFailed = (): TgetOrderFailed => {
+const getOrderFailed = (): TGetOrderFailed => {
   return {
     type: GET_ORDER_FAILED,
   };
 };
 
-const getOrderSuccess = (number: number): TgetOrderSuccess => {
+const getOrderSuccess = (number: number): TGetOrderSuccess => {
   return {
     type: GET_ORDER_SUCCESS,
     number: number,
   };
 };
 
-export const closeOrderModalAction = (): TcloseOrderModalAction => {
+export const closeOrderModalAction = (): TCloseOrderModalAction => {
   return {
     type: CLOSE_ORDER_MODAL,
   };

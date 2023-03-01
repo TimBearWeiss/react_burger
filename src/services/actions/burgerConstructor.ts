@@ -26,14 +26,14 @@ export type TdeleteIngredient = {
   readonly item: number;
 };
 
-type itemCard = {
+type TItemCard = {
   dragIndex: number;
   hoverIndex: number;
 };
 
-export type TmoveCard = {
+export type TMoveCard = {
   readonly type: typeof MOVE_CARD;
-  readonly item: itemCard;
+  readonly item: TItemCard;
 };
 
 export type TdeleteAllIngredient = {
@@ -46,7 +46,7 @@ export type TburgerConstructor =
   | TaddIngredientInConstructor
   | TaddBunsInConstructor
   | TdeleteIngredient
-  | TmoveCard
+  | TMoveCard
   | TdeleteAllIngredient;
 
 // actions
@@ -70,7 +70,7 @@ export const deleteIngredient = (item: number): TdeleteIngredient => ({
   item,
 });
 
-export const moveCard = (item: itemCard): TmoveCard => ({
+export const moveCard = (item: TItemCard): TMoveCard => ({
   type: MOVE_CARD,
   item,
 });

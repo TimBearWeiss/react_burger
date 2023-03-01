@@ -8,7 +8,7 @@ import { TOrder } from "../../types/types";
 import { TwsAction } from "../actions/wsAction";
 
 type TWsState = {
-  wsConnected: Boolean;
+  wsConnected: boolean;
   allOrders: Array<TOrder>;
   readyOrders: Array<TOrder>;
   preparingOrders: Array<TOrder>;

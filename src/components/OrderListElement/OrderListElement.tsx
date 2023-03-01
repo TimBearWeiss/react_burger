@@ -3,15 +3,14 @@ import {
   FormattedDate,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FC } from "react";
 import { useTypedSelector } from "../../services/rootReducer";
-import { TIngredient } from "../../types/types";
+import { TIngredient, TOrder } from "../../types/types";
 
 type TOrderList = {
-  item: any;
+  item: TOrder;
   status?: string;
   link: string;
 };

@@ -36,8 +36,8 @@ const BurgerIngredients: FC = () => {
   const handleTabClick = (value: string) => {
     setCurrent(value);
 
-    let test = document.querySelector<any>(`#${value}`);
-    test.scrollIntoView({ block: "start", behavior: "smooth" });
+    const test = document.querySelector<HTMLElement>(`#${value}`);
+    test?.scrollIntoView({ block: "start", behavior: "smooth" });
   };
 
   // продолжение работы таба

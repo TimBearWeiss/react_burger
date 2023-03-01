@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import styles from "../components/CurrentOrderInModal/CurrentOrderInModal.module.css";
 import {
@@ -42,7 +42,7 @@ const CurrentOrderPage: FC = () => {
   );
 
   const totalPrice = orderingredients?.reduce(
-    (previous: number, current: any) => previous + current.price,
+    (previous, current) => previous + current?.price!,
     0
   );
 

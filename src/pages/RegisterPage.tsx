@@ -12,7 +12,7 @@ import styles from "./Pages.module.css";
 import { registerUser } from "../services/actions/user";
 import { AppDispatch } from "../types/types";
 
-const RefisterPage = () => {
+const RegisterPage = () => {
   const dispatch: any = useDispatch();
   const navigate = useNavigate();
 
@@ -93,4 +93,4 @@ const RefisterPage = () => {
   );
 };
 
-export default RefisterPage;
+export default RegisterPage;

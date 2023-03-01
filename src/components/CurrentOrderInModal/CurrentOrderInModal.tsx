@@ -1,21 +1,19 @@
 import { useParams } from "react-router-dom";
 import InfoOrder from "../InfoOrder/InfoOrder";
 import { useTypedSelector } from "../../services/rootReducer";
-import { TIngredient } from "../../types/types";
 import { FC } from "react";
+import { TOrder } from "../../types/types";
 
 const CurrentOrderInModal: FC = () => {
   const { id } = useParams();
 
-  const allOrders = useTypedSelector((store: any) => store.orderFeed.allOrders);
-  const currentOrder = allOrders.find((item: TIngredient) => item._id === id);
+  const allOrders = useTypedSelector((store) => store.orderFeed.allOrders);
+  const currentOrder = allOrders.find((item: TOrder) => item._id === id);
 
   return (
-    <>
-      <div>
-        {currentOrder && <InfoOrder currentOrder={currentOrder}></InfoOrder>}
-      </div>
-    </>
+    <div>
+      {currentOrder && <InfoOrder currentOrder={currentOrder}></InfoOrder>}
+    </div>
   );
 };
 

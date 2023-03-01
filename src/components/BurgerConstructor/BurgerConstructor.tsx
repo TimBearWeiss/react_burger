@@ -47,7 +47,7 @@ const BurgerConstructor: FC = () => {
 
   const totalPrice = useMemo(() => {
     let totalPrice = 0;
-    midIngredients.map((item) => {
+    midIngredients.map((item: TIngredient) => {
       totalPrice = totalPrice + item.price;
     });
 
@@ -57,7 +57,7 @@ const BurgerConstructor: FC = () => {
     const bunsPrice = buns.price * 2;
 
     return (totalPrice = totalPrice + bunsPrice);
-  }, [midIngredients]);
+  }, [midIngredients, buns]);
 
   // отправка заказа на сервер
 
@@ -135,14 +135,15 @@ const BurgerConstructor: FC = () => {
         </div>
 
         <div className={ConstructorStyle.scroll}>
-          {midIngredients.map((item: TIngredient, index: number) => (
-            <CardConstructor
-              data={item}
-              index={index}
-              key={item.id}
-              id={item.id}
-            />
-          ))}
+          {midIngredients &&
+            midIngredients.map((item: TIngredient, index: number) => (
+              <CardConstructor
+                data={item}
+                index={index}
+                key={item.id}
+                id={item.id}
+              />
+            ))}
         </div>
 
         <div className={ConstructorStyle.base}>

@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { getCookie } from "../../utils/data";
-import { FC, ReactFragment } from "react";
+import { FC, ReactComponentElement, ReactElement } from "react";
+import { useEffect, ReactNode } from "react";
 import { useTypedSelector } from "../../services/rootReducer";
 
 type TProtectedRoute = {

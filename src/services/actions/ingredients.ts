@@ -62,16 +62,3 @@ export const getAllIngredients: AppThunk = () => {
     });
   };
 };
-
-// export const getAllIngredients: AppThunk = () => {
-//   return function (dispatch: AppDispatch) {
-//     dispatch(getIngredientRequest());
-//     getIngredients("ingredients").then((res) => {
-//       if (res && res.success) {
-//         dispatch({ type: GET_INGREDIENTS_SUCCESS, items: res.data });
-//       } else {
-//         dispatch(getIngredientFailed());
-//       }
-//     });
-//   };
-// };

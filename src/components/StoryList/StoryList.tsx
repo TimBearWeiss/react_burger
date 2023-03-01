@@ -9,9 +9,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getCookie } from "../../utils/data";
 import { FC } from "react";
+import { TOrder } from "../../types/types";
 
 type TStoryListProps = {
-  allOrders: any;
+  allOrders: TOrder[];
 };
 
 const StoryList: FC<TStoryListProps> = ({ allOrders }) => {
@@ -28,7 +29,7 @@ const StoryList: FC<TStoryListProps> = ({ allOrders }) => {
 
   return (
     <div className={styles.scrollProfile}>
-      {allOrders.map((el: any) => (
+      {allOrders.map((el) => (
         <OrderListElement
           link={"profile/orders"}
           status={el.status}

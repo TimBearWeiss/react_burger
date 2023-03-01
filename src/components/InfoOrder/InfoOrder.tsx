@@ -3,7 +3,7 @@ import {
   wsConnectionStart,
   wsConnectionClosed,
 } from "../../services/actions/wsAction";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import styles from "../CurrentOrderInModal/CurrentOrderInModal.module.css";
 import {
@@ -39,8 +39,10 @@ const InfoOrder: FC<TInfoOrder> = ({ currentOrder }) => {
   useEffect(() => {
     const newArray: any = [];
 
-    currentOrder.ingredients.forEach((e) => {
-      newArray.push(allIngredients.find((element: any) => element._id === e));
+    currentOrder.ingredients.forEach((e: string) => {
+      newArray.push(
+        allIngredients.find((element: TIngredient) => element._id === e)
+      );
     });
 
     const totalPrice = newArray.reduce(
@@ -48,7 +50,7 @@ const InfoOrder: FC<TInfoOrder> = ({ currentOrder }) => {
       0
     );
     setPrice(totalPrice);
-  }, []);
+  }, [allIngredients, currentOrder]);
 
   function defineStatus(st: string) {
     if (st === "done") {

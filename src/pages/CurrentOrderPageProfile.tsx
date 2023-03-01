@@ -61,14 +61,15 @@ const CurrentOrderPageInProfile = () => {
     return arr.filter((item) => item == index).length;
   }
 
-  const orderingredients = currentOrder?.ingredients.map((item: string) =>
+  const orderIngredients = currentOrder?.ingredients.map((item: string) =>
     allIngredients.find((data: TIngredient) => data._id === item)
   );
 
-  const totalPrice = orderingredients?.reduce(
-    (previous: number, current: any) => previous + current.price,
+  const totalPrice = orderIngredients?.reduce(
+    (previous, current) => previous + current?.price!,
     0
   );
+
   return (
     <>
       {!currentOrder ? (
