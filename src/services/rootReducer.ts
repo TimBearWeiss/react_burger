@@ -4,12 +4,12 @@ import { constructorReducer } from "./reducers/burgerConstructor";
 import { ingredientDetailsModalReducer } from "./reducers/ingredientDetailsModal";
 import { orderReducer } from "./reducers/order";
 import { userReducer } from "./reducers/user";
-import { createStore, compose, applyMiddleware } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { wsReducer } from "./reducers/wsReducer";
 import { socketMiddleware } from "./middleware/wsMiddleware";
 import { useSelector } from "react-redux";
-import { composeEnhancers } from "./puking";
+import { composeEnhancers } from "../utils/data";
 
 import {
   WS_CONNECTION_START,
@@ -48,11 +48,6 @@ const wsActions: TWsActionsMiddleware = {
   onError: WS_CONNECTION_ERROR,
   onMessage: WS_GET_MESSAGE,
 };
-
-// export const composeEnhancers =
-//   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-//     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-//     : compose;
 
 const enhancer = composeEnhancers(
   applyMiddleware(thunk, socketMiddleware(wsActions))

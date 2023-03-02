@@ -7,6 +7,7 @@ import { TwsAction } from "../services/actions/wsAction";
 import { TgetCurrentIngredient } from "../services/actions/ingredientDetailsModal";
 import { TOrderAction } from "../services/actions/order";
 import { TingredientsAction } from "../services/actions/ingredients";
+import { TuserAction } from "../services/actions/user";
 
 // типы
 
@@ -64,7 +65,8 @@ type TApplicationActions =
   | TwsAction
   | TgetCurrentIngredient
   | TingredientsAction
-  | TOrderAction;
+  | TOrderAction
+  | TuserAction;
 
 // export type TRootState = ReturnType<typeof rootReducer>;
 

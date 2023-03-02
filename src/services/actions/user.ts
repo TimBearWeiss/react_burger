@@ -324,7 +324,11 @@ export const registerUser = (formData: TFormData, redirect: () => void) => {
 };
 
 // вход в систему
-export function LogIn(email: string, password: string, redirect: () => void) {
+export const LogIn = (
+  email: string,
+  password: string,
+  redirect: () => void
+) => {
   return function (dispatch: AppDispatch) {
     dispatch(logInRequest());
     logIn(email, password)
@@ -343,10 +347,10 @@ export function LogIn(email: string, password: string, redirect: () => void) {
         dispatch(logInFailed());
       });
   };
-}
+};
 
 //запрос данных пользователя по access токену
-export function fillUserData() {
+export const fillUserData = () => {
   return function (dispatch: AppDispatch) {
     dispatch(requestUserData());
     getUserData()
@@ -362,10 +366,10 @@ export function fillUserData() {
         // dispatch(updateToken());
       });
   };
-}
+};
 
 // обновление токена для запоминания входа
-export function updateToken() {
+export const updateToken = () => {
   return function (dispatch: AppDispatch) {
     dispatch(updateTokenRequest());
     getNewAuthToken()
@@ -383,10 +387,10 @@ export function updateToken() {
         dispatch(updateTokenFailed());
       });
   };
-}
+};
 
 // выход из системы
-export function logOut() {
+export const logOut = () => {
   return function (dispatch: AppDispatch) {
     dispatch(LogOutRequest());
     userLogOut()
@@ -402,9 +406,9 @@ export function logOut() {
         dispatch(LogOutFailed());
       });
   };
-}
+};
 
-export function passwordChangeStep(email: string, redirect: () => void) {
+export const passwordChangeStep = (email: string, redirect: () => void) => {
   return function (dispatch: AppDispatch) {
     dispatch(changeStepRequest());
     sendCode(email)
@@ -421,10 +425,10 @@ export function passwordChangeStep(email: string, redirect: () => void) {
         dispatch(changeStepFailed());
       });
   };
-}
+};
 
 //обновление данных пользователя через профиль (с токеном)
-export function changeUserData(form: TFormData) {
+export const changeUserData = (form: TFormData) => {
   return function (dispatch: AppDispatch) {
     dispatch(changeUserDataRequest());
     updateUserData(form)
@@ -440,4 +444,4 @@ export function changeUserData(form: TFormData) {
         dispatch(changeUserDataFailed());
       });
   };
-}
+};
