@@ -5,7 +5,7 @@ import { useEffect, ReactNode } from "react";
 import { useTypedSelector } from "../../services/rootReducer";
 
 type TProtectedRoute = {
-  children: any;
+  children?: ReactNode;
   forAuthUser: boolean;
 };
 
@@ -32,8 +32,6 @@ const ProtectedRouteElement: FC<TProtectedRoute> = ({
     if (isUserAuth) {
       // нельзя открыть логины
       return <Navigate to={from} />;
-    } else {
-      return children;
     }
   }
 
@@ -42,10 +40,10 @@ const ProtectedRouteElement: FC<TProtectedRoute> = ({
   if (!forAuthUser) {
     if (!isUserAuth) {
       return <Navigate to="/login" state={{ from: location }} />;
-    } else {
-      return children;
     }
   }
+
+  return <>{children}</>;
 };
 
 export default ProtectedRouteElement;
