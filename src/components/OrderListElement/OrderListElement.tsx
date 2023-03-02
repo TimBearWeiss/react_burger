@@ -27,7 +27,7 @@ const OrderListElement: FC<TOrderList> = ({ item, status, link }) => {
   const [AmountIngredients, setAmountIngredients] = useState(0);
 
   useEffect(() => {
-    let newArray: any = [];
+    const newArray: any = [];
 
     item.ingredients.forEach((e: string) => {
       newArray.push(

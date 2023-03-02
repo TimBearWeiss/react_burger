@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "../services/rootReducer";
 import { useEffect } from "react";
 import { WS_URL } from "../utils/api";
 import {
@@ -14,8 +14,9 @@ import {
 import { getCookie } from "../utils/cookie";
 import { useTypedSelector } from "../services/rootReducer";
 import { TIngredient, TOrder } from "../types/types";
+import { FC } from "react";
 
-const CurrentOrderPageInProfile = () => {
+const CurrentOrderPageInProfile: FC = () => {
   const dispatch = useDispatch();
 
   const { id } = useParams();

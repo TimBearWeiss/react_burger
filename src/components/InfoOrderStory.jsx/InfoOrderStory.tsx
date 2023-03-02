@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "../../services/rootReducer";
 import { useState, useEffect } from "react";
 import styles from "../CurrentOrderInModalProfile/CurrentOrderInModalProfile.module.css";
 import {

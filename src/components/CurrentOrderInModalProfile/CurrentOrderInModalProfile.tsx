@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useTypedSelector } from "../../services/rootReducer";
 import InfoOrderStory from "../InfoOrderStory.jsx/InfoOrderStory";
 import { TOrder } from "../../types/types";

@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import style from "./Pages.module.css";
 import { useTypedSelector } from "../services/rootReducer";
 import { TIngredient } from "../types/types";
+import { FC } from "react";
 
-function IngredientInfoPage() {
+const IngredientInfoPage: FC = () => {
   const { id } = useParams();
   const allIngredients = useTypedSelector(
     (store) => store.ingredients.allIngredients
@@ -60,6 +60,6 @@ function IngredientInfoPage() {
       )}
     </>
   );
-}
+};
 
 export default IngredientInfoPage;

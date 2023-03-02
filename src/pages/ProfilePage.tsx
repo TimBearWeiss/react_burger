@@ -7,20 +7,19 @@ import {
   Input,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from "react-redux";
 import { deleteCookie } from "../utils/cookie";
 import { logOut, changeUserData } from "../services/actions/user";
 import StoryList from "../components/StoryList/StoryList";
-import { useTypedSelector } from "../services/rootReducer";
-import { AppDispatch } from "../types/types";
+import { useTypedSelector, useDispatch } from "../services/rootReducer";
+import { FC } from "react";
 
-const ProfilePage = () => {
+const ProfilePage: FC = () => {
   const { email, name } = useTypedSelector((store) => store.user.user);
   const allOrders = useTypedSelector((store) =>
     store.orderFeed.allOrders.reverse()
   );
 
-  const dispatch: any = useDispatch();
+  const dispatch = useDispatch();
   const [isChanged, setIsChanged] = useState(false);
   const [nameValue, setName] = useState(name);
   const [emailValue, setEmail] = useState(email);

@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../services/rootReducer";
 import React from "react";
 import {
   EmailInput,
@@ -8,10 +8,10 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./Pages.module.css";
 import { LogIn } from "../services/actions/user";
-import { AppDispatch } from "../types/types";
+import { FC } from "react";
 
-function LoginPage() {
-  const dispatch: any = useDispatch();
+const LoginPage: FC = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -82,6 +82,6 @@ function LoginPage() {
       </p>
     </div>
   );
-}
+};
 
 export default LoginPage;

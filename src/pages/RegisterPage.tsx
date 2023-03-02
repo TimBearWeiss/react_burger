@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useState, FC } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   EmailInput,
   PasswordInput,
@@ -10,10 +8,10 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./Pages.module.css";
 import { registerUser } from "../services/actions/user";
-import { AppDispatch } from "../types/types";
+import { useDispatch } from "../services/rootReducer";
 
-const RegisterPage = () => {
-  const dispatch: any = useDispatch();
+const RegisterPage: FC = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [nameValue, setName] = useState("");

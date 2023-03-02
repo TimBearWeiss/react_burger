@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useTypedSelector } from "../services/rootReducer";
 import { useEffect } from "react";
 import styles from "../components/CurrentOrderInModal/CurrentOrderInModal.module.css";
 import {
@@ -11,10 +11,8 @@ import {
   wsConnectionStart,
   wsConnectionClosed,
 } from "../services/actions/wsAction";
-import { useTypedSelector } from "../services/rootReducer";
-import { TIngredient } from "../types/types";
+import { TIngredient, TOrder } from "../types/types";
 import { FC } from "react";
-import { TOrder } from "../types/types";
 
 const CurrentOrderPage: FC = () => {
   const { id } = useParams();

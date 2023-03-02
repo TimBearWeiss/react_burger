@@ -1,16 +1,15 @@
 import styles from "./Pages.module.css";
 import OrderListElement from "../components/OrderListElement/OrderListElement";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, FC } from "react";
 import { WS_URL } from "../utils/api";
 import {
   wsConnectionStart,
   wsConnectionClosed,
 } from "../services/actions/wsAction";
-import { useTypedSelector } from "../services/rootReducer";
+import { useTypedSelector, useDispatch } from "../services/rootReducer";
 import { TOrder } from "../types/types";
 
-const OrderListPage = () => {
+const OrderListPage: FC = () => {
   const totalOrders = useTypedSelector((store) => store.orderFeed.total);
   const totalToday = useTypedSelector((store) => store.orderFeed.totalToday);
   const readyOrders = useTypedSelector((store) => store.orderFeed.readyOrders);

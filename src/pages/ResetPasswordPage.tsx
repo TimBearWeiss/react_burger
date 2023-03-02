@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   PasswordInput,
@@ -8,7 +8,7 @@ import {
 import styles from "./Pages.module.css";
 import { resetPassword } from "../utils/userApi";
 
-function ResetPasswordPage() {
+const ResetPasswordPage: FC = () => {
   const navigate = useNavigate();
 
   const [codeReset, setCodeReset] = React.useState("");
@@ -74,6 +74,6 @@ function ResetPasswordPage() {
       </p>
     </div>
   );
-}
+};
 
 export default ResetPasswordPage;

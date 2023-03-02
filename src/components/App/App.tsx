@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import appStyle from "./App.module.css";
 import AppHeader from "../AppHeader/AppHeader";
@@ -24,9 +23,10 @@ import { fillUserData } from "../../services/actions/user";
 import { useTypedSelector } from "../../services/rootReducer";
 import { AppDispatch } from "../../types/types";
 import { FC } from "react";
+import { useDispatch } from "../../services/rootReducer";
 
 const App: FC = () => {
-  const dispatch: any = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllIngredients());

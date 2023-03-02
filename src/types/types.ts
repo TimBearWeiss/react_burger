@@ -1,4 +1,3 @@
-import { rootReducer } from "../services/rootReducer";
 import { store } from "../services/rootReducer";
 import { ThunkAction } from "redux-thunk";
 import { Action, ActionCreator } from "redux";
@@ -67,8 +66,6 @@ type TApplicationActions =
   | TingredientsAction
   | TOrderAction
   | TuserAction;
-
-// export type TRootState = ReturnType<typeof rootReducer>;
 
 export type TRootState = ReturnType<typeof store.getState>;
 

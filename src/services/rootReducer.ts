@@ -11,6 +11,8 @@ import { socketMiddleware } from "./middleware/wsMiddleware";
 import { useSelector } from "react-redux";
 import { composeEnhancers } from "../utils/data";
 
+import { useDispatch as dispatchHook } from "react-redux";
+
 import {
   WS_CONNECTION_START,
   WS_CONNECTION_SUCCESS,
@@ -20,7 +22,7 @@ import {
   WS_SEND_MESSAGE,
 } from "./actions/wsAction";
 import { TypedUseSelectorHook } from "react-redux";
-import { TRootState } from "../types/types";
+import { AppDispatch, AppThunk, TRootState } from "../types/types";
 
 export const rootReducer = combineReducers({
   ingredients: ingredientsReducer,
@@ -54,5 +56,9 @@ const enhancer = composeEnhancers(
 );
 
 export const useTypedSelector: TypedUseSelectorHook<TRootState> = useSelector;
+
+type AppDispatchFunc = () => AppDispatch | AppThunk;
+
+export const useDispatch: AppDispatchFunc = dispatchHook;
 
 export const store = createStore(rootReducer, enhancer);

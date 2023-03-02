@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./Pages.module.css";
+import { FC } from "react";
 
-const NotFoundPage = () => {
+const NotFoundPage: FC = () => {
   return (
     <div className={styles.notFoundCell}>
       <h2 className="text text_type_digits-large">404</h2>

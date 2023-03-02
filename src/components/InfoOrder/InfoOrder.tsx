@@ -3,7 +3,7 @@ import {
   wsConnectionStart,
   wsConnectionClosed,
 } from "../../services/actions/wsAction";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../services/rootReducer";
 import { useEffect, useState } from "react";
 import styles from "../CurrentOrderInModal/CurrentOrderInModal.module.css";
 import {

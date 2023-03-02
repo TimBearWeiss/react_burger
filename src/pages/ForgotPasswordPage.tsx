@@ -5,12 +5,12 @@ import {
 import React from "react";
 import styles from "./Pages.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../services/rootReducer";
 import { passwordChangeStep } from "../services/actions/user";
-import { AppDispatch } from "../types/types";
+import { FC } from "react";
 
-function ForgotPasswordPage() {
-  const dispatch: any = useDispatch();
+const ForgotPasswordPage: FC = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [email, setEmail] = React.useState("");
@@ -58,6 +58,6 @@ function ForgotPasswordPage() {
       </p>
     </div>
   );
-}
+};
 
 export default ForgotPasswordPage;
