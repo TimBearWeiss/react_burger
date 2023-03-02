@@ -52,12 +52,6 @@ export const CHANGE_USER_DATA_FAILED: "CHANGE_USER_DATA_FAILED" =
 
 // типы
 
-// export type TFormData = {
-//   name: string;
-//   email: string;
-//   password: string;
-// };
-
 type TregisterUserRequest = {
   readonly type: typeof REGISTER_USER_REQUEST;
 };

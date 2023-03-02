@@ -35,14 +35,16 @@ const OrderListElement: FC<TOrderList> = ({ item, status, link }) => {
       );
     });
     const AmountIngredients = newArray.slice(5, item.ingredients.length).length;
-    const totalPrice = newArray.reduce(
-      (acc: number, cur: TIngredient) => acc + cur.price,
+
+    const totalPrice = newArray?.reduce(
+      (acc: number, cur: TIngredient) => acc + cur?.price!,
       0
     );
+
     setPrice(totalPrice);
     setIngredientOrder(newArray);
     setAmountIngredients(AmountIngredients);
-  }, [item]);
+  }, []);
 
   function defineStatus(st: string) {
     if (st === "done") {
