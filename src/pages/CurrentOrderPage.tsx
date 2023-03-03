@@ -67,13 +67,12 @@ const CurrentOrderPage: FC = () => {
 
   return (
     <>
-      {currentOrder === undefined ? (
+      {!currentOrder ? (
         <p>Загрузка</p>
       ) : (
-        <div style={{ maxWidth: "640px", marginTop: "120px" }}>
+        <div className={styles.sectionStyle}>
           <p
-            style={{ textAlign: "center" }}
-            className={`text text_type_digits-default mb-10`}
+            className={`text text_type_digits-default mb-10 ${styles.alignNumber}`}
           >
             #{currentOrder.number}
           </p>

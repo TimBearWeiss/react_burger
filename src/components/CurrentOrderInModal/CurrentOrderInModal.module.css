@@ -2,10 +2,19 @@
   color: #00cccc;
 }
 
+.alignNumber {
+  text-align: center;
+}
+
 .structureCell {
   padding: 40px;
   width: 640px;
   text-align: start;
+}
+
+.sectionStyle {
+  max-width: 640px;
+  margin-top: 120px;
 }
 
 .orderScroll {

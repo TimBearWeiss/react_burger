@@ -1,5 +1,4 @@
-import { useCallback, useMemo, useEffect, useState } from "react";
-
+import { useCallback, useMemo, useEffect, useState, FC } from "react";
 import { useDrop } from "react-dnd";
 import { useNavigate } from "react-router-dom";
 import ConstructorStyle from "./BurgerConstructor.module.css";
@@ -19,10 +18,8 @@ import { DELETE_ALL_INGREDIENT } from "../../services/actions/burgerConstructor"
 import emptyPlace from "../../images/emptyPlace.svg";
 import { v4 as uuidv4 } from "uuid";
 import CardConstructor from "../CardConstructor/CardConstructor";
-import { useTypedSelector } from "../../services/rootReducer";
+import { useTypedSelector, useDispatch } from "../../services/rootReducer";
 import { TIngredient } from "../../types/types";
-import { useDispatch } from "../../services/rootReducer";
-import { FC } from "react";
 
 const BurgerConstructor: FC = () => {
   const dispatch = useDispatch();

@@ -11,7 +11,7 @@ import { TburgerConstructor } from "../actions/burgerConstructor";
 
 type TConstructorIng = {
   constructorIngredients: Array<TIngredient> | [];
-  // constructorBuns: TIngredient | {};
+  // constructorBuns: Array<TIngredient> | [];
   constructorBuns: any;
 };
 

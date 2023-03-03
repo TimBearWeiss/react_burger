@@ -1,6 +1,6 @@
 import { GET_CURRENT_INGREDIENT } from "../actions/ingredientDetailsModal";
 import { TIngredient } from "../../types/types";
-import { TgetCurrentIngredient } from "../actions/ingredientDetailsModal";
+import { TGetCurrentIngredient } from "../actions/ingredientDetailsModal";
 
 type TCurrentIngredient = {
   currentIngredient: TIngredient | null;
@@ -13,7 +13,7 @@ const defaultState: TCurrentIngredient = {
 
 export const ingredientDetailsModalReducer = (
   state = defaultState,
-  action: TgetCurrentIngredient
+  action: TGetCurrentIngredient
 ) => {
   switch (action.type) {
     case GET_CURRENT_INGREDIENT:

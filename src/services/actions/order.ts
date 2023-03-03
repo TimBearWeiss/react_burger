@@ -59,12 +59,13 @@ export const closeOrderModalAction = (): TCloseOrderModalAction => {
     type: CLOSE_ORDER_MODAL,
   };
 };
-// котлета
 
-export const getOrder: AppThunk = (IdIngredients: Array<string>) => {
+// thunk экшен
+
+export const getOrder: AppThunk = (idIngredients: Array<string>) => {
   return function (dispatch: AppDispatch) {
     dispatch(getOrderRequest());
-    getNumberOfOrder("orders", IdIngredients).then((res) => {
+    getNumberOfOrder("orders", idIngredients).then((res) => {
       if (res && res.success) {
         dispatch(getOrderSuccess(res.order.number));
       } else {

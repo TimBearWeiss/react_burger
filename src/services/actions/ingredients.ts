@@ -10,32 +10,32 @@ export const GET_INGREDIENTS_FAILED: "GET_INGREDIENTS_FAILED" =
   "GET_INGREDIENTS_FAILED";
 
 // типы
-export type TgetIngredientRequest = {
+export type TGetIngredientRequest = {
   readonly type: typeof GET_INGREDIENTS_REQUEST;
 };
 
-export type TgetIngredientFailed = {
+export type TGetIngredientFailed = {
   readonly type: typeof GET_INGREDIENTS_FAILED;
 };
 
-export type TgetIngredientSuccess = {
+export type TGetIngredientSuccess = {
   readonly type: typeof GET_INGREDIENTS_SUCCESS;
   readonly items: Array<TIngredient>;
 };
 
 export type TingredientsAction =
-  | TgetIngredientRequest
-  | TgetIngredientFailed
-  | TgetIngredientSuccess;
+  | TGetIngredientRequest
+  | TGetIngredientFailed
+  | TGetIngredientSuccess;
 
 // экшины
-export const getIngredientRequest = (): TgetIngredientRequest => {
+export const getIngredientRequest = (): TGetIngredientRequest => {
   return {
     type: GET_INGREDIENTS_REQUEST,
   };
 };
 
-export const getIngredientFailed = (): TgetIngredientFailed => {
+export const getIngredientFailed = (): TGetIngredientFailed => {
   return {
     type: GET_INGREDIENTS_FAILED,
   };
@@ -43,7 +43,7 @@ export const getIngredientFailed = (): TgetIngredientFailed => {
 
 export const getIngredientSuccess = (
   ingredients: Array<TIngredient>
-): TgetIngredientSuccess => {
+): TGetIngredientSuccess => {
   return {
     type: GET_INGREDIENTS_SUCCESS,
     items: ingredients,

@@ -12,17 +12,17 @@ export const DELETE_ALL_INGREDIENT: "DELETE_ALL_INGREDIENT" =
 
 // типы actions
 
-export type TaddIngredientInConstructor = {
+export type TAddIngredientInConstructor = {
   readonly type: typeof ADD_INGREDIENT_IN_CONSTRUCTOR;
   readonly item: TIngredient;
 };
 
-export type TaddBunsInConstructor = {
+export type TAddBunsInConstructor = {
   readonly type: typeof ADD_BUN_IN_CONSTRUCTOR;
   item: TIngredient;
 };
 
-export type TdeleteIngredient = {
+export type TDeleteIngredient = {
   readonly type: typeof DELETE_INGREDIENT;
   readonly item: number;
 };
@@ -32,36 +32,36 @@ export type TMoveCard = {
   readonly item: TItemCard;
 };
 
-export type TdeleteAllIngredient = {
+export type TDeleteAllIngredient = {
   readonly type: typeof DELETE_ALL_INGREDIENT;
 };
 
 // объединенные типы акшинов
 
 export type TburgerConstructor =
-  | TaddIngredientInConstructor
-  | TaddBunsInConstructor
-  | TdeleteIngredient
+  | TAddIngredientInConstructor
+  | TAddBunsInConstructor
+  | TDeleteIngredient
   | TMoveCard
-  | TdeleteAllIngredient;
+  | TDeleteAllIngredient;
 
 // actions
 
 export const addIngredientInConstructor = (
   item: TIngredient
-): TaddIngredientInConstructor => ({
+): TAddIngredientInConstructor => ({
   type: ADD_INGREDIENT_IN_CONSTRUCTOR,
   item,
 });
 
 export const addBunsInConstructor = (
   item: TIngredient
-): TaddBunsInConstructor => ({
+): TAddBunsInConstructor => ({
   type: ADD_BUN_IN_CONSTRUCTOR,
   item,
 });
 
-export const deleteIngredient = (item: number): TdeleteIngredient => ({
+export const deleteIngredient = (item: number): TDeleteIngredient => ({
   type: DELETE_INGREDIENT,
   item,
 });
@@ -71,7 +71,7 @@ export const moveCard = (item: TItemCard): TMoveCard => ({
   item,
 });
 
-export const deleteAllIngredient = (): TdeleteAllIngredient => {
+export const deleteAllIngredient = (): TDeleteAllIngredient => {
   return {
     type: DELETE_ALL_INGREDIENT,
   };

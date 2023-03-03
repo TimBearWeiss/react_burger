@@ -39,7 +39,7 @@ const InfoOrderStory: FC<TInfoOrderStory> = ({ currentOrder }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    let newArray: any = [];
+    const newArray: any = [];
 
     currentOrder.ingredients.forEach((e) => {
       newArray.push(

@@ -3,7 +3,7 @@ import { ThunkAction } from "redux-thunk";
 import { Action, ActionCreator } from "redux";
 import { TburgerConstructor } from "../services/actions/burgerConstructor";
 import { TwsAction } from "../services/actions/wsAction";
-import { TgetCurrentIngredient } from "../services/actions/ingredientDetailsModal";
+import { TGetCurrentIngredient } from "../services/actions/ingredientDetailsModal";
 import { TOrderAction } from "../services/actions/order";
 import { TingredientsAction } from "../services/actions/ingredients";
 import { TuserAction } from "../services/actions/user";
@@ -62,7 +62,7 @@ export type TItemCard = {
 type TApplicationActions =
   | TburgerConstructor
   | TwsAction
-  | TgetCurrentIngredient
+  | TGetCurrentIngredient
   | TingredientsAction
   | TOrderAction
   | TuserAction;

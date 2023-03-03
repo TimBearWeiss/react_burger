@@ -16,7 +16,6 @@ const ForgotPasswordPage: FC = () => {
   const [email, setEmail] = React.useState("");
 
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e);
     setEmail(e.target.value);
   };
 

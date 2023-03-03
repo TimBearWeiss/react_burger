@@ -30,10 +30,9 @@ const OrderListElement: FC<TOrderList> = ({ item, status, link }) => {
     const newArray: any = [];
 
     item.ingredients.forEach((e: string) => {
-      newArray.push(
-        allIngredients.find((element: TIngredient) => element._id === e)
-      );
+      newArray.push(allIngredients.find((element) => element._id === e));
     });
+
     const AmountIngredients = newArray.slice(5, item.ingredients.length).length;
 
     const totalPrice = newArray?.reduce(
@@ -44,7 +43,7 @@ const OrderListElement: FC<TOrderList> = ({ item, status, link }) => {
     setPrice(totalPrice);
     setIngredientOrder(newArray);
     setAmountIngredients(AmountIngredients);
-  }, []);
+  }, [allIngredients]);
 
   function defineStatus(st: string) {
     if (st === "done") {

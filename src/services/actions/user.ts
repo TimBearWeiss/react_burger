@@ -52,43 +52,41 @@ export const CHANGE_USER_DATA_FAILED: "CHANGE_USER_DATA_FAILED" =
 
 // типы
 
-type TregisterUserRequest = {
+type TRegisterUserRequest = {
   readonly type: typeof REGISTER_USER_REQUEST;
 };
 
-type TregisterUserFailed = {
+type TRegisterUserFailed = {
   readonly type: typeof REGISTER_USER_FAILED;
 };
 
-type TregisterUserSuccess = {
+type TRegisterUserSuccess = {
   readonly type: typeof REGISTER_USER_SUCCESS;
   readonly userData: TUserData;
 };
 
-type TlogInRequest = {
+type TLogInRequest = {
   readonly type: typeof LOG_IN_REQUEST;
 };
 
-type TlogInFailed = {
+type TLogInFailed = {
   readonly type: typeof LOG_IN_FAILED;
 };
 
-type TlogInSuccess = {
+type TLogInSuccess = {
   readonly type: typeof LOG_IN_SUCCESS;
   readonly userData: TUserData;
 };
 
-//////
-
-type TrequestUserData = {
+type TRequestUserData = {
   readonly type: typeof DATA_USER_REQUEST;
 };
 
-type TfailedUserData = {
+type TFailedUserData = {
   readonly type: typeof DATA_USER_FAILED;
 };
 
-type TsucessUserData = {
+type TSucessUserData = {
   readonly type: typeof DATA_USER_SUCCESS;
   readonly userData: TUserData;
 };
@@ -105,101 +103,101 @@ type TLogOutFailed = {
   readonly type: typeof LOGOUT_FAILED;
 };
 
-type TchangeStepRequest = {
+type TChangeStepRequest = {
   readonly type: typeof PASSWORD_CHANGE_STEP_REQUEST;
 };
 
-type TchangeStepSuccess = {
+type TChangeStepSuccess = {
   readonly type: typeof PASSWORD_CHANGE_STEP_SUCCESS;
 };
 
-type TchangeStepFailed = {
+type TChangeStepFailed = {
   readonly type: typeof PASSWORD_CHANGE_STEP_FAILED;
 };
 
-type TupdateTokenRequest = {
+type TUpdateTokenRequest = {
   readonly type: typeof UPDATE_TOKEN_REQUEST;
 };
 
-type TupdateTokenSuccess = {
+type TUpdateTokenSuccess = {
   readonly type: typeof UPDATE_TOKEN_SUCCESS;
   readonly authToken: string;
 };
 
-type TupdateTokenFailed = {
+type TUpdateTokenFailed = {
   readonly type: typeof UPDATE_TOKEN_FAILED;
 };
 
-type TchangeUserDataRequest = {
+type TChangeUserDataRequest = {
   readonly type: typeof CHANGE_USER_DATA_REQUEST;
 };
 
-type TchangeUserDataSuccess = {
+type TChangeUserDataSuccess = {
   readonly type: typeof CHANGE_USER_DATA_SUCCESS;
   readonly userData: any;
 };
 
-type TchangeUserDataFailed = {
+type TChangeUserDataFailed = {
   readonly type: typeof CHANGE_USER_DATA_FAILED;
 };
 
 export type TuserAction =
-  | TregisterUserRequest
-  | TregisterUserFailed
-  | TregisterUserSuccess
-  | TlogInRequest
-  | TlogInFailed
-  | TlogInSuccess
-  | TrequestUserData
-  | TfailedUserData
-  | TsucessUserData
+  | TRegisterUserRequest
+  | TRegisterUserFailed
+  | TRegisterUserSuccess
+  | TLogInRequest
+  | TLogInFailed
+  | TLogInSuccess
+  | TRequestUserData
+  | TFailedUserData
+  | TSucessUserData
   | TLogOutRequest
   | TLogOutSuccsess
   | TLogOutFailed
-  | TchangeStepRequest
-  | TchangeStepSuccess
-  | TchangeStepFailed
-  | TupdateTokenRequest
-  | TupdateTokenSuccess
-  | TupdateTokenFailed
-  | TchangeUserDataRequest
-  | TchangeUserDataSuccess
-  | TchangeUserDataFailed;
+  | TChangeStepRequest
+  | TChangeStepSuccess
+  | TChangeStepFailed
+  | TUpdateTokenRequest
+  | TUpdateTokenSuccess
+  | TUpdateTokenFailed
+  | TChangeUserDataRequest
+  | TChangeUserDataSuccess
+  | TChangeUserDataFailed;
 
 // акшин креаторы
 
-const registerUserRequest = (): TregisterUserRequest => {
+const registerUserRequest = (): TRegisterUserRequest => {
   return {
     type: REGISTER_USER_REQUEST,
   };
 };
 
-const registerUserFailed = (): TregisterUserFailed => {
+const registerUserFailed = (): TRegisterUserFailed => {
   return {
     type: REGISTER_USER_FAILED,
   };
 };
 
-const registerUserSuccess = (res: TUserData): TregisterUserSuccess => {
+const registerUserSuccess = (res: TUserData): TRegisterUserSuccess => {
   return {
     type: REGISTER_USER_SUCCESS,
     userData: res,
   };
 };
 
-const logInRequest = (): TlogInRequest => {
+const logInRequest = (): TLogInRequest => {
   return {
     type: LOG_IN_REQUEST,
   };
 };
 
-const logInFailed = (): TlogInFailed => {
+const logInFailed = (): TLogInFailed => {
   return {
     type: LOG_IN_FAILED,
   };
 };
 
-const logInSuccess = (res: TUserData): TlogInSuccess => {
+const logInSuccess = (res: TUserData): TLogInSuccess => {
   return {
     type: LOG_IN_SUCCESS,
     userData: res,
@@ -207,19 +205,19 @@ const logInSuccess = (res: TUserData): TlogInSuccess => {
 };
 
 //////////
-const requestUserData = (): TrequestUserData => {
+const requestUserData = (): TRequestUserData => {
   return {
     type: DATA_USER_REQUEST,
   };
 };
 
-const failedUserData = (): TfailedUserData => {
+const failedUserData = (): TFailedUserData => {
   return {
     type: DATA_USER_FAILED,
   };
 };
 
-const sucessUserData = (res: TUserData): TsucessUserData => {
+const sucessUserData = (res: TUserData): TSucessUserData => {
   return {
     type: DATA_USER_SUCCESS,
     userData: res,
@@ -246,63 +244,64 @@ const LogOutFailed = (): TLogOutFailed => {
   };
 };
 
-const changeStepRequest = (): TchangeStepRequest => {
+const changeStepRequest = (): TChangeStepRequest => {
   return {
     type: PASSWORD_CHANGE_STEP_REQUEST,
   };
 };
 
-const changeStepSuccess = (): TchangeStepSuccess => {
+const changeStepSuccess = (): TChangeStepSuccess => {
   return {
     type: PASSWORD_CHANGE_STEP_SUCCESS,
   };
 };
 
-const changeStepFailed = (): TchangeStepFailed => {
+const changeStepFailed = (): TChangeStepFailed => {
   return {
     type: PASSWORD_CHANGE_STEP_FAILED,
   };
 };
 
-const updateTokenRequest = (): TupdateTokenRequest => {
+const updateTokenRequest = (): TUpdateTokenRequest => {
   return {
     type: UPDATE_TOKEN_REQUEST,
   };
 };
 
-const updateTokenSuccess = (res: any): TupdateTokenSuccess => {
+const updateTokenSuccess = (res: any): TUpdateTokenSuccess => {
   return {
     type: UPDATE_TOKEN_SUCCESS,
     authToken: res.accessToken,
   };
 };
 
-const updateTokenFailed = (): TupdateTokenFailed => {
+const updateTokenFailed = (): TUpdateTokenFailed => {
   return {
     type: UPDATE_TOKEN_FAILED,
   };
 };
 
-const changeUserDataRequest = (): TchangeUserDataRequest => {
+const changeUserDataRequest = (): TChangeUserDataRequest => {
   return {
     type: CHANGE_USER_DATA_REQUEST,
   };
 };
 
-const changeUserDataSuccess = (res: any): TchangeUserDataSuccess => {
+const changeUserDataSuccess = (res: any): TChangeUserDataSuccess => {
   return {
     type: CHANGE_USER_DATA_SUCCESS,
     userData: res.user,
   };
 };
 
-const changeUserDataFailed = (): TchangeUserDataFailed => {
+const changeUserDataFailed = (): TChangeUserDataFailed => {
   return {
     type: CHANGE_USER_DATA_FAILED,
   };
 };
 
-// котлеты
+// thunk экшены
+
 export const registerUser = (formData: TFormData, redirect: () => void) => {
   return function (dispatch: AppDispatch) {
     dispatch(registerUserRequest());

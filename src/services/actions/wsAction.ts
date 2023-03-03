@@ -11,82 +11,82 @@ export const WS_SEND_MESSAGE: "WS_SEND_MESSAGE" = "WS_SEND_MESSAGE";
 
 // type action
 
-type TorderWsAction = {
+type TOrderWsAction = {
   readonly orders: Array<TOrder>;
   readonly total: number;
   readonly totalToday: number;
 };
 
-type TwsConnectionStart = {
+type TWsConnectionStart = {
   readonly type: typeof WS_CONNECTION_START;
   readonly payload: string;
 };
 
-type TwsConnectionClosed = {
+type TWsConnectionClosed = {
   readonly type: typeof WS_CONNECTION_CLOSED;
 };
 
-type TwsConnectionSuccess = {
+type TWsConnectionSuccess = {
   readonly type: typeof WS_CONNECTION_SUCCESS;
 };
 
-type TwsConnectionError = {
+type TWsConnectionError = {
   readonly type: typeof WS_CONNECTION_ERROR;
 };
 
-type TwsGetMessage = {
+type TWsGetMessage = {
   readonly type: typeof WS_GET_MESSAGE;
-  readonly payload: TorderWsAction;
+  readonly payload: TOrderWsAction;
 };
 
-type TwsSendMessage = {
+type TWsSendMessage = {
   readonly type: typeof WS_SEND_MESSAGE;
-  readonly payload: TorderWsAction;
+  readonly payload: TOrderWsAction;
 };
 
 export type TwsAction =
-  | TwsConnectionStart
-  | TwsConnectionClosed
-  | TwsConnectionSuccess
-  | TwsConnectionError
-  | TwsGetMessage
-  | TwsSendMessage;
+  | TWsConnectionStart
+  | TWsConnectionClosed
+  | TWsConnectionSuccess
+  | TWsConnectionError
+  | TWsGetMessage
+  | TWsSendMessage;
 
 // action
 
-export const wsConnectionStart = (url: string): TwsConnectionStart => {
+export const wsConnectionStart = (url: string): TWsConnectionStart => {
   return {
     type: WS_CONNECTION_START,
     payload: url,
   };
 };
 
-export const wsConnectionClosed = (): TwsConnectionClosed => {
+export const wsConnectionClosed = (): TWsConnectionClosed => {
   return {
     type: WS_CONNECTION_CLOSED,
   };
 };
 
-export const wsConnectionSuccess = (): TwsConnectionSuccess => {
+export const wsConnectionSuccess = (): TWsConnectionSuccess => {
   return {
     type: WS_CONNECTION_SUCCESS,
   };
 };
 
-export const wsConnectionError = (): TwsConnectionError => {
+export const wsConnectionError = (): TWsConnectionError => {
   return {
     type: WS_CONNECTION_ERROR,
   };
 };
 
-export const wsGetMessage = (message: TorderWsAction): TwsGetMessage => {
+export const wsGetMessage = (message: TOrderWsAction): TWsGetMessage => {
   return {
     type: WS_GET_MESSAGE,
     payload: message,
   };
 };
 
-export const wsSendMessage = (message: TorderWsAction): TwsSendMessage => {
+export const wsSendMessage = (message: TOrderWsAction): TWsSendMessage => {
   return {
     type: WS_SEND_MESSAGE,
     payload: message,
