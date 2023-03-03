@@ -37,16 +37,12 @@ const InfoOrder: FC<TInfoOrder> = ({ currentOrder }) => {
   const [totalPrice, setPrice] = useState(0);
 
   useEffect(() => {
-    const newArray: any = [];
+    const orderIngredients = currentOrder?.ingredients.map((item: string) =>
+      allIngredients.find((data: TIngredient) => data._id === item)
+    );
 
-    currentOrder.ingredients.forEach((e: string) => {
-      newArray.push(
-        allIngredients.find((element: TIngredient) => element._id === e)
-      );
-    });
-
-    const totalPrice = newArray.reduce(
-      (acc: number, cur: TIngredient) => acc + cur.price,
+    const totalPrice = orderIngredients?.reduce(
+      (previous, current) => previous + current?.price!,
       0
     );
     setPrice(totalPrice);

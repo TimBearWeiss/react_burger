@@ -27,21 +27,22 @@ const OrderListElement: FC<TOrderList> = ({ item, status, link }) => {
   const [AmountIngredients, setAmountIngredients] = useState(0);
 
   useEffect(() => {
-    const newArray: any = [];
+    const orderingredients = item?.ingredients.map((item: string) =>
+      allIngredients.find((data: TIngredient) => data._id === item)
+    );
 
-    item.ingredients.forEach((e: string) => {
-      newArray.push(allIngredients.find((element) => element._id === e));
-    });
-
-    const AmountIngredients = newArray.slice(5, item.ingredients.length).length;
-
-    const totalPrice = newArray?.reduce(
-      (acc: number, cur: TIngredient) => acc + cur?.price!,
+    const totalPrice = orderingredients?.reduce(
+      (previous, current) => previous + current?.price!,
       0
     );
 
+    const AmountIngredients = orderingredients.slice(
+      5,
+      item.ingredients.length
+    ).length;
+
     setPrice(totalPrice);
-    setIngredientOrder(newArray);
+    setIngredientOrder(orderingredients);
     setAmountIngredients(AmountIngredients);
   }, [allIngredients]);
 
