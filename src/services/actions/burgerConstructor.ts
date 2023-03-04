@@ -19,7 +19,7 @@ export type TAddIngredientInConstructor = {
 
 export type TAddBunsInConstructor = {
   readonly type: typeof ADD_BUN_IN_CONSTRUCTOR;
-  item: TIngredient;
+  item: Array<TIngredient>;
 };
 
 export type TDeleteIngredient = {
@@ -55,7 +55,7 @@ export const addIngredientInConstructor = (
 });
 
 export const addBunsInConstructor = (
-  item: TIngredient
+  item: Array<TIngredient>
 ): TAddBunsInConstructor => ({
   type: ADD_BUN_IN_CONSTRUCTOR,
   item,

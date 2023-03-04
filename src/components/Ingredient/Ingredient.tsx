@@ -41,7 +41,7 @@ const Ingredients: FC<TIngredients> = ({ item }) => {
   // функционал счетчика
   const count = useMemo(() => {
     if (item.type === "bun") {
-      return buns && buns._id === item._id ? 2 : 0;
+      return buns && buns[0]?._id === item._id ? 2 : 0;
     }
     return chosenElements.length;
   }, [item, buns, chosenElements]);

@@ -38,23 +38,20 @@ const BurgerConstructor: FC = () => {
     (store) => store.burgerConstructor.constructorBuns
   );
 
-  const allIngredients = [...midIngredients, buns];
+  const allIngredients = [...midIngredients, ...buns];
 
   // динамическая цена выбранных ингредиентов
 
   const totalPrice = useMemo(() => {
-    let totalPrice = 0;
+    let total = 0;
     midIngredients.map((item: TIngredient) => {
-      totalPrice = totalPrice + item.price;
+      total = total + item.price;
     });
-
-    if (isNaN(buns.price)) {
-      buns.price = 0;
-    }
-    const bunsPrice = buns.price * 2;
-
-    return (totalPrice = totalPrice + bunsPrice);
-  }, [midIngredients, buns]);
+    buns.map((item: TIngredient) => {
+      total = total + item.price;
+    });
+    return total;
+  }, [buns, midIngredients]);
 
   // отправка заказа на сервер
 
@@ -84,7 +81,7 @@ const BurgerConstructor: FC = () => {
     accept: "ingredient",
     drop(item: TIngredient) {
       if (item.type === "bun") {
-        dispatch(addBunsInConstructor({ ...item }));
+        dispatch(addBunsInConstructor([item]));
       } else {
         dispatch(addIngredientInConstructor({ ...item, id: uuidv4() }));
       }
@@ -123,9 +120,9 @@ const BurgerConstructor: FC = () => {
           ) : (
             <ConstructorElement
               type="top"
-              text={`${buns.name} (верх)`}
-              price={buns.price}
-              thumbnail={buns.image}
+              text={`${buns[0].name} (верх)`}
+              price={buns[0].price}
+              thumbnail={buns[0].image}
               isLocked={true}
             />
           )}
@@ -155,9 +152,9 @@ const BurgerConstructor: FC = () => {
           ) : (
             <ConstructorElement
               type="bottom"
-              text={`${buns.name} (низ)`}
-              price={buns.price}
-              thumbnail={buns.image}
+              text={`${buns[0].name} (низ)`}
+              price={buns[0].price}
+              thumbnail={buns[0].image}
               isLocked={true}
             />
           )}
