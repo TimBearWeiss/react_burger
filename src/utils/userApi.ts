@@ -2,6 +2,7 @@ import { checkResponse } from "./api";
 import { BASE_URL } from "./api";
 import { getCookie } from "./cookie";
 import { TFormData } from "../types/types";
+import { TUserData } from "../types/types";
 const BASE_USER_URL = "https://norma.nomoreparties.space/api";
 
 //регистрация пользователя
@@ -16,10 +17,11 @@ const postNewUserInfo = async (formData: TFormData) => {
       email: formData.email,
       password: formData.password,
     }),
-  }).then(checkResponse);
+  }).then((res) => checkResponse<TUserData>(res));
 };
 
 //логин
+
 const logIn = async (email: string, password: string) => {
   return await fetch(`${BASE_USER_URL}/auth/login`, {
     method: "POST",
@@ -30,7 +32,7 @@ const logIn = async (email: string, password: string) => {
       email: email,
       password: password,
     }),
-  }).then(checkResponse);
+  }).then((res) => checkResponse<TUserData>(res));
 };
 
 //получить данные пользователя по токену
@@ -41,7 +43,7 @@ const getUserData = async () => {
       "Content-Type": "application/json",
       Authorization: "Bearer " + getCookie("accessToken"),
     },
-  }).then(checkResponse);
+  }).then((res) => checkResponse<TUserData>(res));
 };
 
 //логаут
@@ -84,6 +86,11 @@ const resetPassword = async (password: string, token: string) => {
   }).then(checkResponse);
 };
 
+type TUpdateUserDate = {
+  accessToken: string;
+  refreshToken: string;
+};
+
 //обновить токен
 const getNewAuthToken = async () => {
   return await fetch(`${BASE_USER_URL}/auth/token`, {
@@ -94,7 +101,7 @@ const getNewAuthToken = async () => {
     body: JSON.stringify({
       token: getCookie("refreshToken"),
     }),
-  }).then(checkResponse);
+  }).then((res) => checkResponse<TUpdateUserDate>(res));
 };
 
 //обновление данных пользователя (с токеном)
