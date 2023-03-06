@@ -1,5 +1,5 @@
-import { useDispatch } from "../../services/rootReducer";
-import { useState, useEffect } from "react";
+import { useDispatch, useTypedSelector } from "../../services/rootReducer";
+import { useState, useEffect, FC } from "react";
 import styles from "../CurrentOrderInModalProfile/CurrentOrderInModalProfile.module.css";
 import {
   FormattedDate,
@@ -11,9 +11,7 @@ import {
   wsConnectionClosed,
 } from "../../services/actions/wsAction";
 import { getCookie } from "../../utils/cookie";
-import { FC } from "react";
 import { TIngredient, TOrder } from "../../types/types";
-import { useTypedSelector } from "../../services/rootReducer";
 
 type TInfoOrderStory = {
   currentOrder: TOrder;

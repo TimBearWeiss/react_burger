@@ -4,15 +4,6 @@ import { getCookie } from "./cookie";
 const BASE_URL = "https://norma.nomoreparties.space/api";
 const WS_URL = "wss://norma.nomoreparties.space/orders";
 
-// function checkResponse(res: any) {
-//   if (res.ok) {
-//     return res.json();
-//   }
-//   return Promise.reject(`Ошибка: ${res.status}`);
-// }
-
-// тестируем
-
 type TIngredientResponse = {
   data: TIngredient[];
 };
@@ -30,8 +21,6 @@ const checkResponse = <T>(res: Response) => {
     ? res.json().then((data) => data as TResponse<T>)
     : Promise.reject(res.status);
 };
-
-// тестируем
 
 const getIngredients = (url: string) => {
   return fetch(`${BASE_URL}/${url}`).then((res) =>

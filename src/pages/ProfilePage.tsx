@@ -1,5 +1,5 @@
 import { NavLink, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import styles from "./Pages.module.css";
 import {
   EmailInput,
@@ -11,7 +11,6 @@ import { deleteCookie } from "../utils/cookie";
 import { logOut, changeUserData } from "../services/actions/user";
 import StoryList from "../components/StoryList/StoryList";
 import { useTypedSelector, useDispatch } from "../services/rootReducer";
-import { FC } from "react";
 
 const ProfilePage: FC = () => {
   const { email, name } = useTypedSelector((store) => store.user.user);

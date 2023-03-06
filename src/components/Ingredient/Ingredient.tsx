@@ -3,13 +3,11 @@ import {
   Counter,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch } from "../../services/rootReducer";
-import { useCallback, useMemo } from "react";
+import { useDispatch, useTypedSelector } from "../../services/rootReducer";
+import { useCallback, useMemo, FC } from "react";
 import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
 import { TIngredient } from "../../types/types";
-import { FC } from "react";
-import { useTypedSelector } from "../../services/rootReducer";
 import { getCurrentIngredient } from "../../services/actions/ingredientDetailsModal";
 
 type TIngredients = {

@@ -3,16 +3,14 @@ import {
   wsConnectionStart,
   wsConnectionClosed,
 } from "../../services/actions/wsAction";
-import { useDispatch } from "../../services/rootReducer";
-import { useEffect, useState } from "react";
+import { useDispatch, useTypedSelector } from "../../services/rootReducer";
+import { useEffect, useState, FC } from "react";
 import styles from "../CurrentOrderInModal/CurrentOrderInModal.module.css";
 import {
   FormattedDate,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { TOrder, TIngredient } from "../../types/types";
-import { FC } from "react";
-import { useTypedSelector } from "../../services/rootReducer";
 
 type TInfoOrder = {
   currentOrder: TOrder;

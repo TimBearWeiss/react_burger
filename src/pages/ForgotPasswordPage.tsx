@@ -2,12 +2,11 @@ import {
   EmailInput,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import React from "react";
+import React, { FC } from "react";
 import styles from "./Pages.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "../services/rootReducer";
 import { passwordChangeStep } from "../services/actions/user";
-import { FC } from "react";
 
 const ForgotPasswordPage: FC = () => {
   const dispatch = useDispatch();

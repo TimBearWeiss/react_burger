@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import appStyle from "./App.module.css";
 import AppHeader from "../AppHeader/AppHeader";
@@ -21,8 +21,6 @@ import CurrentOrderInModalProfile from "../CurrentOrderInModalProfile/CurrentOrd
 import CurrentOrderPageInProfile from "../../pages/CurrentOrderPageProfile";
 import { fillUserData } from "../../services/actions/user";
 import { useTypedSelector } from "../../services/rootReducer";
-import { AppDispatch } from "../../types/types";
-import { FC } from "react";
 import { useDispatch } from "../../services/rootReducer";
 
 const App: FC = () => {

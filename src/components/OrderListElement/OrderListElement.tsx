@@ -24,26 +24,26 @@ const OrderListElement: FC<TOrderList> = ({ item, status, link }) => {
 
   const [totalPrice, setPrice] = useState(0);
   const [ingredientOrder, setIngredientOrder] = useState<any>(null);
-  const [AmountIngredients, setAmountIngredients] = useState(0);
+  const [amountIngredients, setAmountIngredients] = useState(0);
 
   useEffect(() => {
-    const orderingredients = item?.ingredients.map((item: string) =>
+    const orderIngredients = item?.ingredients.map((item: string) =>
       allIngredients.find((data: TIngredient) => data._id === item)
     );
 
-    const totalPrice = orderingredients?.reduce(
+    const totalPrice = orderIngredients?.reduce(
       (previous, current) => previous + current?.price!,
       0
     );
 
-    const AmountIngredients = orderingredients.slice(
+    const amountIngredients = orderIngredients.slice(
       5,
       item.ingredients.length
     ).length;
 
     setPrice(totalPrice);
-    setIngredientOrder(orderingredients);
-    setAmountIngredients(AmountIngredients);
+    setIngredientOrder(orderIngredients);
+    setAmountIngredients(amountIngredients);
   }, [allIngredients]);
 
   function defineStatus(st: string) {
@@ -109,7 +109,7 @@ const OrderListElement: FC<TOrderList> = ({ item, status, link }) => {
             >
               <div
                 className={styles.quantityIngredient}
-              >{`+${AmountIngredients}`}</div>
+              >{`+${amountIngredients}`}</div>
               <img
                 className={styles.lastIngredient}
                 src={ingredientOrder[5].image}

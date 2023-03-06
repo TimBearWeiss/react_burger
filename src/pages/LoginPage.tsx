@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "../services/rootReducer";
-import React from "react";
+import React, { FC } from "react";
 import {
   EmailInput,
   PasswordInput,
@@ -8,7 +8,6 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./Pages.module.css";
 import { LogIn } from "../services/actions/user";
-import { FC } from "react";
 
 const LoginPage: FC = () => {
   const dispatch = useDispatch();

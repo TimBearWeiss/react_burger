@@ -1,10 +1,9 @@
 import IngredientStyle from "./BurgerIngredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredient from "../Ingredient/Ingredient";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, FC } from "react";
 import { useInView } from "react-intersection-observer";
 import Ingredients from "../Ingredient/Ingredient";
-import { FC } from "react";
 import { useTypedSelector } from "../../services/rootReducer";
 import { TIngredient } from "../../types/types";
 

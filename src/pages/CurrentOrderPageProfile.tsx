@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useDispatch } from "../services/rootReducer";
-import { useEffect } from "react";
+import { useDispatch, useTypedSelector } from "../services/rootReducer";
+import { useEffect, FC } from "react";
 import { WS_URL } from "../utils/api";
 import {
   FormattedDate,
@@ -12,9 +12,7 @@ import {
   wsConnectionClosed,
 } from "../services/actions/wsAction";
 import { getCookie } from "../utils/cookie";
-import { useTypedSelector } from "../services/rootReducer";
 import { TIngredient, TOrder } from "../types/types";
-import { FC } from "react";
 
 const CurrentOrderPageInProfile: FC = () => {
   const dispatch = useDispatch();

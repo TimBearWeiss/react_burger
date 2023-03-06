@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useTypedSelector } from "../services/rootReducer";
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
 import styles from "../components/CurrentOrderInModal/CurrentOrderInModal.module.css";
 import {
   FormattedDate,
@@ -12,7 +12,6 @@ import {
   wsConnectionClosed,
 } from "../services/actions/wsAction";
 import { TIngredient, TOrder } from "../types/types";
-import { FC } from "react";
 
 const CurrentOrderPage: FC = () => {
   const { id } = useParams();

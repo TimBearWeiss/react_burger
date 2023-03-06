@@ -5,10 +5,9 @@ import {
   wsConnectionClosed,
 } from "../../services/actions/wsAction";
 import { WS_URL } from "../../utils/api";
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
 import { useDispatch } from "../../services/rootReducer";
 import { getCookie } from "../../utils/cookie";
-import { FC } from "react";
 import { TOrder } from "../../types/types";
 
 type TStoryListProps = {

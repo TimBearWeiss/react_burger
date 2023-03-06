@@ -1,6 +1,6 @@
-import { useRef } from "react";
+import { useRef, FC } from "react";
+import { useDrop, useDrag } from "react-dnd";
 import { useDispatch } from "../../services/rootReducer";
-import { useDrop } from "react-dnd";
 import CardConstructorStyle from "./CardConstructor.module.css";
 import {
   ConstructorElement,
@@ -10,9 +10,7 @@ import {
   deleteIngredient,
   moveCard,
 } from "../../services/actions/burgerConstructor";
-import { useDrag } from "react-dnd";
 import { TIngredient } from "../../types/types";
-import { FC } from "react";
 
 type TCardConstructor = {
   index: number;
