@@ -1,5 +1,4 @@
-# Проект Stellar-Burgers
-<img src="./src/images/burger-gif.gif">
+# Проект Stellar-Burgers :hamburger:
 
 ## Описание
 Приложение с возможностью собрать бургер, заказать и отслеживать статус его готовности.
